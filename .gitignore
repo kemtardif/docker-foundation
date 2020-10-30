@@ -28,3 +28,6 @@
 
 # IGNORE THE DATABASE CONFIG
 config/database.yml
+
+# Ignore application configuration
+/config/application.yml

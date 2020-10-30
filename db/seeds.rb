@@ -347,14 +347,14 @@ def faker_data
     end 
 end
 
-# employee()
-# faker_data()
+employee()
+faker_data()
 
 department = ["Residential", "Commercial", "Corporate", "Hybrid"]
 
-1.upto(300) do
-  lead_create(department)
-end
-1.upto(100) do
-  quote_create()
-end
+##1.upto(300) do
+  ##lead_create(department)
+##end
+##1.upto(100) do
+ ## quote_create()
+##end
