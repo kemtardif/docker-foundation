@@ -1,8 +1,18 @@
+
+# frozen_string_literal: false
+
+require "json"
+
+require "ibm_watson/authenticators"
+require "ibm_watson/text_to_speech_v1"
+include IBMWatson
+
 class Elevator < ApplicationRecord
     belongs_to :column
 
     ##after_update :call_tech
     after_update :speak_for_me
+    
 
     private
         def call_tech 
@@ -13,7 +23,30 @@ class Elevator < ApplicationRecord
         end
 
         def speak_for_me
-            message = "Hello World"
-            WatsonTextSpeech.new(message).speak
+            
+            authenticator = Authenticators::IamAuthenticator.new(
+            apikey: ENV["TEXT_TO_SPEECH_IAM_APIKEY"]
+            )              
+
+            text_to_speech = TextToSpeechV1.new(
+                authenticator: authenticator,
+                )   
+            
+
+            text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
+
+            File.delete("output.wav") if File.exist?("output.wav")
+
+            response = text_to_speech.synthesize(
+                text: "Helloooo boys and girls",
+                accept:  "audio/wav",
+                voice:  "en-US_AllisonV3Voice"
+            )
+
+
+            File.open("output.wav", "wb") do |audio_file|
+    
+            audio_file.write(response.result)
+            end
         end
 end

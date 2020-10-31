@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/charts'       => 'pages#charts'
   get '/diagram'      => 'pages#diagram'
 
+
   post '/leads'       => 'leads#create'
   post "/quotes"      => "quotes#create"
    

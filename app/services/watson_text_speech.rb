@@ -1,9 +1,12 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 require "json"
-require "ibm_watson"
+
+include IBMWatson
 require "ibm_watson/authenticators"
 require "ibm_watson/text_to_speech_v1"
+
+
 
 
 class WatsonTextSpeech
@@ -14,22 +17,30 @@ class WatsonTextSpeech
     end
 
     def speak
+
         authenticator = IBMWatson::Authenticators::IamAuthenticator.new(
             apikey: ENV["TEXT_TO_SPEECH_IAM_APIKEY"]
-            )
+            )    
         text_to_speech = IBMWatson::TextToSpeechV1.new(
             authenticator: authenticator
             )   
         text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
-        
-        File.new("output.wav", "w+") do |audio_file|
-            response = text_to_speech.synthesize(
-              text: message,
-              accept: "audio/wav",
-              voice: "en-US_AllisonVoice"
-            ).result
-            audio_file << response
-          end
+
+        text_to_speech.configure_http_client(disable_ssl_verification: true)
+
+        File.delete("output.wav") if File.exist?("output.wav")
+
+        response = text_to_speech.synthesize.dup(
+            text: 'Hello darling I am a bot',
+            accept: "audio/mp3",
+            voice: "en-US_AllisonVoice"
+          )
+
+
+        File.open("output.wav", "wb") do |audio_file|
+ 
+          audio_file.write(response.result)
+        end
     end
 
 end
