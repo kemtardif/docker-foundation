@@ -1,0 +1,21 @@
+%span#infos Latest Informations
+:javascript
+  $( "#infos" ).on( "click", function() {
+          
+           let xmlHttpRequest = new XMLHttpRequest(); 
+           xmlHttpRequest.open("GET", "/watson");
+           xmlHttpRequest.responseType = "blob"; 
+           xmlHttpRequest.setRequestHeader("Accept", "application/json");
+           xmlHttpRequest.setRequestHeader("Content-Type", "application/json"); 
+           xmlHttpRequest.onreadystatechange = function() {
+             if (this.readyState == 4 && this.status == 200) {
+               var url = window.URL.createObjectURL(this.response);
+               var audio = new Audio();
+               audio.src = url;
+               audio.play();
+             }
+           };
+
+           xmlHttpRequest.send(); 
+
+        });

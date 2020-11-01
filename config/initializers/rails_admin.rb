@@ -1,3 +1,5 @@
+require Rails.root.join('lib', 'rails_admin', 'tool.rb')
+
 RailsAdmin.config do |config|
   
   # JORGE - Link to data visualization
@@ -40,6 +42,8 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
+
+    tool
 
     ## With an audit adapter, you can add:
     # history_index

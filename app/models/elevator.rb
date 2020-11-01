@@ -1,17 +1,8 @@
 
-# frozen_string_literal: false
-
-require "json"
-
-require "ibm_watson/authenticators"
-require "ibm_watson/text_to_speech_v1"
-include IBMWatson
-
 class Elevator < ApplicationRecord
     belongs_to :column
 
-    ##after_update :call_tech
-    after_update :speak_for_me
+    after_update :call_tech
     
 
     private
@@ -21,13 +12,6 @@ class Elevator < ApplicationRecord
                 TwilioTextMessenger.new(message).call
             end
         end
-
-        def speak_for_me
-            message = "There is #{Elevator::count} elevators in #{Building::count} buildings of your #{Customer::count} customers. You currently have #{Quote::count} quotes awaiting processing. You currently have #{Lead::count} leads in your contact requests. #{Battery::count} Batteries are deployed across cities"
-            WatsonTextSpeech.new(message).speak
-        end
-
-        
     around_update :notify_system_if_name_is_changed
     
     private
