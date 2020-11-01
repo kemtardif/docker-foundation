@@ -23,32 +23,11 @@ class Elevator < ApplicationRecord
         end
 
         def speak_for_me
-            
-            authenticator = Authenticators::IamAuthenticator.new(
-            apikey: ENV["TEXT_TO_SPEECH_IAM_APIKEY"]
-            )              
-
-            text_to_speech = TextToSpeechV1.new(
-                authenticator: authenticator,
-                )   
-            
-
-            text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
-
-            File.delete("output.wav") if File.exist?("output.wav")
-
-            response = text_to_speech.synthesize(
-                text: "Helloooo boys and girls",
-                accept:  "audio/wav",
-                voice:  "en-US_AllisonV3Voice"
-            )
-
-
-            File.open("output.wav", "wb") do |audio_file|
-    
-            audio_file.write(response.result)
-            end
+            message = "There is #{Elevator::count} elevators in #{Building::count} buildings of your #{Customer::count} customers. You currently have #{Quote::count} quotes awaiting processing. You currently have #{Lead::count} leads in your contact requests. #{Battery::count} Batteries are deployed across cities"
+            WatsonTextSpeech.new(message).speak
         end
+
+        
     around_update :notify_system_if_name_is_changed
     
     private

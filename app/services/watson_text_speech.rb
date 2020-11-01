@@ -22,12 +22,12 @@ class WatsonTextSpeech
     #text_to_speech.configure_http_client(disable_ssl_verification: true)
 
     response = text_to_speech.synthesize(
-        text: "Hello",
+        text: message,
         accept: "audio/mp3",
         voice: "en-US_AllisonVoice"
     ).result
 
-    File.open("output.mp3", "wb") do |audio_file|
+    File.open("app/assets/audios/output.mp3", "wb") do |audio_file|
       audio_file.write(response)
     end
   end
