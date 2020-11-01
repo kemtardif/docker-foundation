@@ -1,6 +1,9 @@
-%span#infos Latest Informations
+%audio#audio-player.audios{controls: "", preload: "none"}
+  %source{src: "/app/assets/audios/outputs.mp3", type: "audio/mp3"}
+
+
 :javascript
-  $( "#infos" ).on( "click", function() {
+  $( "#audio-player" ).on( "play", function() {
           
            let xmlHttpRequest = new XMLHttpRequest(); 
            xmlHttpRequest.open("GET", "/watson");

@@ -16,8 +16,8 @@ class WatsonController < ActionController::Base
         )
         text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
             
-        message = "There is #{Elevator::count} elevators in #{Building::count} buildings of your #{Customer::count} customers. You currently have #{Quote::count} quotes awaiting processing. You currently have #{Lead::count} leads in your contact requests. #{Battery::count} Batteries are deployed across cities"
-
+        ##message = "There is #{Elevator::count} elevators in #{Building::count} buildings of your #{Customer::count} customers. You currently have #{Quote::count} quotes awaiting processing. You currently have #{Lead::count} leads in your contact requests. #{Battery::count} Batteries are deployed across cities"
+        message = "Hello people"
         response = text_to_speech.synthesize(
             text: message,
             accept: "audio/mp3",
