@@ -15,7 +15,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-gem 'slack-notifier'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -96,10 +96,19 @@ gem 'faker'
 #JORGE - Data visualization Extra Mille
 gem 'chartkick'
 
+gem 'groupdate', '~> 5.2', '>= 5.2.1'
+
 
 # Week 7
 gem 'sendgrid-ruby'
 gem 'zendesk_api'
 gem 'figaro'
+gem 'geocoder'
 gem 'twilio-ruby'
 gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', branch: 'master'
+gem 'slack-notifier'
+gem 'dropbox_api'
+gem 'gmaps4rails'
+
+gem 'carrierwave', '~> 2.0'
+

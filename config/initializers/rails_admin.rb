@@ -1,11 +1,13 @@
-require Rails.root.join('lib', 'rails_admin', 'tool.rb')
+require Rails.root.join('lib', 'rails_admin', 'tools.rb')
+require Rails.root.join('lib', 'rails_admin', 'map.rb')
 
 RailsAdmin.config do |config|
   
   # JORGE - Link to data visualization
   config.navigation_static_links = {
   'Data Visualization' => '/charts',
-  'Diagram'            => '/diagram'
+  'Diagram'            => '/diagram',
+  'Map'                => '/places',                
 }
 
   ### Popular gems integration
@@ -42,9 +44,10 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
-
-    tool
-
+    
+    tools
+    map
+    
     ## With an audit adapter, you can add:
     # history_index
     # history_show

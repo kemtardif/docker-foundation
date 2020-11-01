@@ -35,11 +35,11 @@ en:
 
   admin:
     actions:
-      tool:
-        title: "SITE ADMNINISTRATION"
+      tools:
         menu: "Tools"
+        title: "Tools"
         breadcrumb: "Tools"
-    
-
-    
-    
+      map:
+        menu: "Map"
+        title: "Map"
+        breadcrumb: "Map"

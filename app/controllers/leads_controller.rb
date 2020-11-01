@@ -7,11 +7,15 @@ class LeadsController < ApplicationController
   require 'sendgrid-ruby'
   include SendGrid
   def create        
-    @lead = Lead.new(lead_params)   
-    @lead.save!  
-    helpers.ticket(lead_params)
+    @lead = Lead.new(lead_params)
+    puts lead_params   
+    @lead.save!
 
+    helpers.ticket_lead(lead_params)
+    SendGrid_compute()
+  end
 
+  def SendGrid_compute
     full_name = params[:full_name]
     email = params[:email]
     project_name = params[:project_name]
@@ -47,5 +51,4 @@ class LeadsController < ApplicationController
                     :message,
                     :attached_file )   
   end
-
 end

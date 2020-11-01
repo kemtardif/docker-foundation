@@ -6,7 +6,9 @@ class QuotesController < ApplicationController
 
     def create        
       @quote = Quote.new(quote_params)   
-      @quote.save!     
+      @quote.save!  
+      
+      helpers.ticket_quote(quote_params)
     end
 
     def quote_params        
