@@ -25,9 +25,11 @@
       console.log("kndalskdna"); 
       markers = handler.addMarkers(<%= @datas.to_json.html_safe%>);
       handler.bounds.extendWith(markers);  
-      handler.fitMapToBounds();  
+      handler.fitMapToBounds();   
     });  
     </script>
+
+<% end %>
   </div>
 </div>
 
