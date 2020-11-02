@@ -1,9 +1,0 @@
-I"¾(function() {
-  App.tet = App.cable.subscriptions.create("TetChannel", {
-    connected: function() {},
-    disconnected: function() {},
-    received: function(data) {}
-  });
-
-}).call(this);
-:ET
