@@ -24,9 +24,5 @@
 config/database.yml
 
 # Ignore application configuration
-<<<<<<< HEAD
-config/application.yml
-=======
 /config/application.yml
 
->>>>>>> master
