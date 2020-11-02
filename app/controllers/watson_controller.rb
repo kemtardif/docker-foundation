@@ -16,26 +16,22 @@ class WatsonController < ActionController::Base
         )
         text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
             
-        ##message = "There is #{Elevator::count} elevators in #{Building::count} buildings of your #{Customer::count} customers. You currently have #{Quote::count} quotes awaiting processing. You currently have #{Lead::count} leads in your contact requests. #{Battery::count} Batteries are deployed across cities"
-        message = "Hello people"
+        message = "Greeting user #{current_user.id}. There is #{Elevator::count} elevators in #{Building::count} buildings of your 
+                    #{Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
+                    Running Status and are being serviced. You currently have #{Quote::count} quotes awaiting processing.
+                    You currently have #{Lead::count} leads in your contact requests. 
+                    #{Battery::count} Batteries are deployed across 
+                    #{Address.where(id: Building.select(:address_id).distinct).select(:city).distinct.count} cities"
+
         response = text_to_speech.synthesize(
             text: message,
             accept: "audio/mp3",
             voice: "en-GB_KateV3Voice"
         ).result
 
-        File.open("app/assets/audios/outputs.mp3", "wb") do |audio_file|
+        File.open("#{Rails.root}/public/outputs.mp3", "wb") do |audio_file|
                         audio_file.write(response)
-                    end
-        
-
-        soundFile = File.open("app/assets/audios/outputs.mp3", "r")
-        binary = soundFile.read
-
-        send_data binary, filename: 'outputs.mp3', type: 'audio/mp3', disposition: 'inline'
-
-
-        
+        end    
     end
   
 end
