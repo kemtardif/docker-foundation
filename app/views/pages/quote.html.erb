@@ -1,0 +1,104 @@
+<%= image_tag("M.jpg", :width => "100%", :class => 'img-fluid') %>
+<form action="/quotes" method="post" enctype="multipart/form-data" id="quoteForm">
+	<div id="quote_form" class="container">
+		<div class="row">
+			<div id="typeChoice" class="col-md-6 form-group">
+				<label for="company_name">Company Name *</label>
+				<input required type="text" value="" class="form-control" name="company_name" id="contact:company">
+				<label for="email">Email *</label>
+				<input required type="text" value="" class="form-control" name="email" id="contact:email">
+				<label for="building_type">Choose the type of the project: </label>
+				<select class="form-control" name="building_type" id="type">
+					<option disabled selected value> -- select an option -- </option>
+					<option value="residential">Residential</option>
+					<option value="commercial">Commercial</option>
+					<option value="corporate">Corporate</option>
+					<option value="hybrid">Hybrid</option>
+				</select>
+				<br \>
+				<div id="form">
+					<div class="row residential form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="apps_qty">How many apartments:</label>
+						<input class="col-md-4" type="number" max="999999" id="apartments" name="apps_qty"><br \>
+					</div>
+					<div class="row commercial form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="business_qty">How many business: </label>
+						<input class="col-md-4 quoteField" type="number" max="999999" id="businesses" name="business_qty"><br \>
+					</div>
+					<div class="row corporate hybrid form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="business_qty">How many separate tenant: </label>
+						<input class="col-md-4 quoteField" type="number" max="999999" id="corp_businesses" name="business_qty"><br \>
+					</div>
+					<div class="row residential commercial corporate hybrid form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="floors_qty">How many floors: </label>
+						<input class="col-md-4 quoteField" type="number" max="999999" id="floors" name="floors_qty"><br \>
+					</div>
+					<div class="row residential commercial corporate hybrid form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="basements_qty">How many basements: </label>
+						<input class="col-md-4 quoteField" type="number" max="999999" id="basements" name="basements_qty"><br \>
+					</div>
+					<div class="row commercial corporate hybrid form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="parkings_qty">How many parkings: </label>
+						<input class="col-md-4 quoteField" type="number" max="999999" id="c_parkings" name="parkings_qty"><br \>
+					</div>
+					<div class="row commercial form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="elevators_qty">How many elevator cages: </label>
+						<input class="col-md-4 quoteField" type="number" max="999999" id="cages" name="elevators_qty"><br \>
+					</div>
+					<div class="row corporate hybrid form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="occupants_floors_qty">Maximum number of occupants per floor: </label>
+						<input class="col-md-4 quoteField" type="number" max="999999" id="occupants" name="occupants_floors_qty"><br \>
+					</div>
+					<div class="row hybrid form-group row quoteField" style="display:none">
+						<label class="col-md-8 col-form-label quoteField" for="hours_activity">Hours of activity: </label>
+						<input class="col-md-4 quoteField" type="number" max="24" id="occupants" name="hours_activity" max=""><br \>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1"></div>						
+				<div class="col-md-5">
+					<fieldset id="models">
+						<div class="row">
+							<div class="col-4">
+								<%= image_tag("logoBronze.png", :width => "100%", :class => 'img-fluid') %>
+								<label for="std" >Standard</label>
+								<input type="radio" id="std" name="game" value="7565">
+							</div>
+							<div class="col-4">
+								<%= image_tag("logoSilver.png", :width => "100%", :class => 'img-fluid') %>
+								<label for="pre">Premium</label>
+								<input type="radio" id="pre" name="game" value="12345">
+							</div>
+							<div class="col-4">
+								<%= image_tag("logoGold.png", :width => "100%", :class => 'img-fluid') %>
+								<label for="exc">Excelium</label>
+								<input type="radio" id="exc" name="game" value="15400">
+							</div>
+						</div>
+						<hr>
+						<div id="quote">
+							<div id="priceUnit" class="row" style="display:none">
+								<h3>Price per elevator</h3>
+								<h4 class ="form-control"></h4>
+							</div>
+							<div class="row">
+								<h3>Elevators</h3>
+								<input id="recommended" name="elevator_needed">
+							</div>
+							<div class="row" style="margin-top: 20px;">
+								<h3>Price</h3>
+								<input id="price" name="total_price">
+							</div>
+						</div>
+						<br \>
+						<div class="row"> <!--submit-->
+							<div class="col-md-12">
+								<button type="submit" class="btn btn-rblue" id="btnQuotef"><i class="fa fa-check"></i> SUBMIT QUOTE</button>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

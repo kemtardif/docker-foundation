@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Rocket Elevators</title>
+		<meta name="description" content="" />
+		<meta name="Author" content="tonTed [Teddy BLANCO]" />
+		<link rel="shortcut icon" href="assets/images/logo.ico"/>
+
+		<!-- mobile settings -->
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+		<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+		<!-- WEB FONTS : use %7C instead of | (pipe) -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
+
+		<!-- CORE CSS -->
+		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+		<!-- REVOLUTION SLIDER -->
+		<link href="assets/plugins/slider.revolution/css/extralayers.css" rel="stylesheet" type="text/css" />
+		<link href="assets/plugins/slider.revolution/css/settings.css" rel="stylesheet" type="text/css" />
+
+		<!-- THEME CSS -->
+		<link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+
+		<!-- PAGE LEVEL SCRIPTS -->
+		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/rgray.css" rel="stylesheet" type="text/css" id="color_scheme" />
+
+		<!-- THEME CUSTOM CSS -->
+		<link href="assets/css/tonTedStlyle.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<!--
+		AVAILABLE BODY CLASSES:
+		
+		smoothscroll 			= create a browser smooth scroll
+		enable-animation		= enable WOW animations
+
+		bg-grey					= grey background
+		grain-grey				= grey grain background
+		grain-blue				= blue grain background
+		grain-green				= green grain background
+		grain-blue				= blue grain background
+		grain-orange			= orange grain background
+		grain-yellow			= yellow grain background
+		
+		boxed 					= boxed layout
+		pattern1 ... patern11	= pattern background
+		menu-vertical-hide		= hidden, open on click
+		
+		BACKGROUND IMAGE [together with .boxed class]
+		data-background="assets/images/_smarty/boxed_background/1.jpg"
+	-->
+	<body class="smoothscroll enable-animation">
+
+		<!-- wrapper -->
+		<div id="wrapper">
+
+			<!-- Nav
+				AVAILABLE HEADER CLASSES
+
+				Default nav height: 96px
+				.header-md 		= 70px nav height
+				.header-sm 		= 60px nav height
+
+				.b-0 		= remove bottom border (only with transparent use)
+				.transparent	= transparent header
+				.translucent	= translucent header
+				.sticky			= sticky header
+				.static			= static header
+				.dark			= dark header
+				.bottom			= header on bottom
+				
+				shadow-before-1 = shadow 1 header top
+				shadow-after-1 	= shadow 1 header bottom
+				shadow-before-2 = shadow 2 header top
+				shadow-after-2 	= shadow 2 header bottom
+				shadow-before-3 = shadow 3 header top
+				shadow-after-3 	= shadow 3 header bottom
+
+				.clearfix		= required for mobile menu, do not remove!
+
+				Example Usage:  class="clearfix sticky header-sm transparent b-0"
+			-->
+			<div id="header" class="navbar-toggleable-md header-md clearfix sticky rgray">
+
+				<!-- TOP NAV -->
+				<header id="topNav">
+					<div class="container">
+
+						<!-- Mobile Menu Button -->
+						<button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- Logo -->
+						<a class="logo float-left scrollTo" href="#top">
+							<img src="assets/images/R2.png" alt="" />
+						</a>
+
+						<!-- 
+							Top Nav 
+							
+							AVAILABLE CLASSES:
+							submenu-dark = dark sub menu
+						-->
+						<div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+							<nav class="nav-main">
+
+								<!-- 
+									.nav-onepage
+									Required for onepage navigation links
+									
+									Add .external for an external link!
+								-->
+								<ul id="topMain" class="nav nav-pills nav-main nav-onepage">
+									<li class="active"><!-- HOME -->
+										<a href="index.html#home">
+											HOME
+										</a>
+									</li>
+									<li><!-- SERVICES -->
+										<a class="dropdown-toggle" href="index.html#services">
+											SERVICES
+										</a>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="residential.html">Residential</a>
+											</li>
+											<li>
+												<a href="corporate.html">Corporate</a>
+											</li>
+											<li class="divider"></li>
+											<li>
+												<a href="quote.html">Get a quote</a>
+											</li>
+										</ul>
+									</li>
+									<li><!-- WORK -->
+										<a href="index.html#work">
+											PORTFOLIO
+										</a>
+									</li>
+									<li><!-- NEWS -->
+										<a href="index.html#news">
+											NEWS
+										</a>
+									</li>
+									<li><!-- CLIENTS -->
+										<a href="index.html#clients">
+											CLIENTS
+										</a>
+									</li>
+									<li><!-- CONTACT -->
+										<a href="index.html#contact">
+											CONTACT
+										</a>
+									</li>
+								</ul>
+
+							</nav>
+						</div>
+
+					</div>
+				</header>
+				<!-- /Top Nav -->
+
+			</div>
+
+			<!-- REVOLUTION SLIDER -->
+			<div class="slider fullwidthbanner-container roundedcorners">
+				<!--
+					Navigation Styles:
+					
+						data-navigationStyle="" theme default navigation
+						
+						data-navigationStyle="preview1"
+						data-navigationStyle="preview2"
+						data-navigationStyle="preview3"
+						data-navigationStyle="preview4"
+						
+					Bottom Shadows
+						data-shadow="1"
+						data-shadow="2"
+						data-shadow="3"
+						
+					Slider Height (do not use on fullscreen mode)
+						data-height="300"
+						data-height="350"
+						data-height="400"
+						data-height="450"
+						data-height="500"
+						data-height="550"
+						data-height="600"
+						data-height="650"
+						data-height="700"
+						data-height="750"
+						data-height="800"
+				-->
+				<div class="fullwidthbanner" data-height="600" data-shadow="0" data-navigationStyle="preview2" id="home">
+					<ul class="hide">
+					
+						<!-- SLIDE  -->
+						<li data-transition="parallaxtobottom" data-slotamount="7" data-masterspeed="600"  data-saveperformance="off"  data-title="Slogan">
+							<!-- MAIN IMAGE -->
+							<img src="assets/images/wall2.jpg"  alt="cover image"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+
+							<div class="tp-caption white_big skewfromleft tp-resizeme"
+								data-x="471"
+								data-y="100" 
+								data-speed="400"
+								data-start="1500"
+								data-easing="Power3.easeInOut"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.1"
+								data-endelementdelay="0.1"
+								data-endspeed="600"
+								style="z-index: 2; color:gray; font-size:65px; line-height:85px; font-weight:bold; letter-spacing:0; text-shadow:none;">
+									Elevate Safety, <br />
+									Speed and Style
+							</div>
+
+							<div class="tp-caption tp-fade"
+								data-x="left"
+								data-y="25" 
+								data-speed="300"
+								data-start="800"
+								data-easing="Power3.easeInOut"
+								data-elementdelay="0.1"
+								data-endelementdelay="0.1"
+								data-endspeed="300"
+								style="z-index: 4;">
+									<img src="assets/images/Asc1.png" alt="" height="550">
+							</div>
+
+							<div class=" container skewfromleft tp-resizeme  un-button-2-lg"
+								data-x="565"
+								data-y="300" 
+								data-speed="300"
+								data-start="2500"
+								data-easing="Power3.easeInOut"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.1"
+								data-endelementdelay="0.1"
+								data-endspeed="300"
+
+								style="z-index: 5; max-width: auto; max-height: auto; white-space: nowrap;">
+									<a class="btn btn-rred btn-lg" href="index.html#services">OUR SERVICES &nbsp; <i class="fa fa-angle-right"></i></a>
+									&nbsp; OR &nbsp; 
+									<a class="btn btn-rblue btn-lg" href="quote.html">GET A QUOTE &nbsp; <i class="fa fa-angle-right"></i></a>
+							</div>
+						</li>
+
+						<!-- SLIDE  -->
+						<li data-transition="parallaxtotop" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" data-title="Residential Services">
+							<!-- MAIN IMAGE -->
+							<img src="assets/images/AdobeStock_72034307.jpeg"  alt="cover image"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+
+							<div class="overlay dark-4"><!-- dark overlay [0 to 9 opacity] --></div>
+
+							<div class="tp-caption font-roboto skewfromleft tp-resizeme"
+								data-x="50"
+								data-y="100" 
+								data-speed="500"
+								data-start="1500"
+								data-easing="Cubic.easeOut"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.1"
+								data-endelementdelay="0.1"
+								data-endspeed="500"
+								style="z-index: 2; color:#fff; font-size:65px; line-height:85px; font-weight:bold; letter-spacing:0; text-shadow:none;">
+									Residential Building
+							</div>
+
+							<div class="tp-caption skewfromrightshort tp-resizeme"
+								data-x="50"
+								data-y="300" 
+								data-speed="500"
+								data-start="1000"
+								data-easing="easeInCirc"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.1"
+								data-endelementdelay="0.1"
+								data-endspeed="500"
+								style="z-index: 3; font-size:30px; color:#fff; font-weight:300; text-shadow:none;">
+									Inspiring choice
+							</div>
+
+							<div class="tp-caption sfb tp-resizeme"
+								data-x="50"
+								data-y="410" 
+								data-speed="500"
+								data-start="1500"
+								data-easing="Power3.easeIn"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="1"
+								data-endelementdelay="0.1"
+								data-endspeed="500"
+								style="z-index: 4; max-width: auto;">
+									<a class="btn btn-rred btn-lg" href="residential.html">OUR SERVICES &nbsp; <i class="fa fa-angle-right"></i></a>
+							</div>
+						</li>
+
+						<!-- SLIDE  -->
+						<li data-transition="parallaxtotop" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" data-title="Corporate Services">
+							<!-- MAIN IMAGE -->
+							<img src="assets/images/AdobeStock_78149317.jpeg" alt="cover image"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+
+							<div class="overlay dark-4"><!-- dark overlay [0 to 9 opacity] --></div>
+
+							<div class="tp-caption font-roboto skewfromleft tp-resizeme"
+								data-x="50"
+								data-y="100" 
+								data-speed="500"
+								data-start="1500"
+								data-easing="Cubic.easeOut"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.1"
+								data-endelementdelay="0.1"
+								data-endspeed="500"
+								style="z-index: 2; color:#fff; font-size:65px; line-height:85px; font-weight:bold; letter-spacing:0; text-shadow:none;">
+									Corporate Building
+							</div>
+
+							<div class="tp-caption skewfromrightshort tp-resizeme"
+								data-x="50"
+								data-y="300" 
+								data-speed="500"
+								data-start="1000"
+								data-easing="easeInCirc"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.1"
+								data-endelementdelay="0.1"
+								data-endspeed="500"
+								style="z-index: 3; font-size:20px; color:#fff; font-weight:300; text-shadow:none;">
+									Welcoming public space
+							</div>
+
+							<div class="tp-caption sfb tp-resizeme"
+								data-x="50"
+								data-y="410" 
+								data-speed="500"
+								data-start="1500"
+								data-easing="Power3.easeIn"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="1"
+								data-endelementdelay="0.1"
+								data-endspeed="500"
+								style="z-index: 4; max-width: auto;">
+									<a class="btn btn-rblue btn-lg" href="corporate.html">OUR SERVICES &nbsp; <i class="fa fa-angle-right"></i></a>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+			<!-- /REVOLUTION SLIDER -->
+
+
+			<hr class="m-0" /><!-- 1px line separator -->
+
+			<!-- Services -->
+			<section id="services">
+				<div class="container">
+
+					<div class="row">
+						<div class="col-sm-4"> <!--Awards-->
+							<img class="img-fluid" src="assets/images/AdobeStock_162479912.jpeg" alt="img" />
+							<h3 class="mt-10">Awards and Project</h3>
+							<p>
+								Our projects are no big deal. From the simple elevator in a private residence, to the multitude of elevators in large commercial buildings. Innovator, we have received different unique awards.</p>
+							<a href="#work" class="btn btn-outline-rred">READ MORE</a>
+						</div>
+
+						<div class="col-sm-4"> <!--Residential-->
+							<img class="img-fluid" src="assets/images/AdobeStock_66781279.jpeg" alt="img" />
+							<h3 class="mt-10">Residential Services</h3>
+							<p>We understands the peak time challenges in a residential building. We can help you plan for efficient people transportation in real-world situations.</p>
+							<a href="residential.html" class="btn btn-outline-rblue">DETAILS</a>
+						</div>
+
+						<div class="col-sm-4"> <!--Corporate-->
+							<img class="img-fluid" src="assets/images/AdobeStock_3294993.jpeg" alt="img" />
+							<h3 class="mt-10">Corporate Services</h3>
+							<p>We understands the complex demands that public structures require. They have to provide traffic flow without interruption.</p>
+							<a href="corporate.html" class="btn btn-outline-rblue">DETAILS</a>
+						</div>
+
+					</div>
+
+				</div>
+			</section>
+			<!-- /Services -->
+
+
+			<!-- Parallax -->
+			<section class="parallax parallax-1" style="background-image: url('assets/images/AdobeStock_73868131.jpeg');">
+				<div class="overlay dark-5"><!-- dark overlay [1 to 9 opacity] --></div>
+
+				<div class="container">
+
+					<div class="text-center">
+						<h2 class="fs-40 fw-300">Since 1976</h2>
+						<a class="btn btn-rred btn-lg" href="quote.html">GET A QUOTE <i class="fa fa-angle-right"></i></a> 
+						&nbsp; OR &nbsp; 
+						<a class="btn btn-rblue btn-lg" href="index.html#services">OUR SERVICES <i class="fa fa-angle-right"></i></a>
+					</div>
+
+				</div>
+			</section>
+			<!-- /Parallax -->
+
+
+			<!-- PORTFOLIO -->
+			<section id="work">
+				<div class="container">
+
+					<div class="heading-title heading-dotted text-center">
+						<h2>Featured Work</h2>
+					</div>
+
+					<div class="text-center">
+						<ul class="nav nav-pills mix-filter mb-60">
+							<li data-filter="all" class="filter active"><a href="#">All</a></li>
+							<li data-filter="awards" class="filter"><a href="#">Awards</a></li>
+							<li data-filter="residential" class="filter"><a href="#">Residential</a></li>
+							<li data-filter="corporate" class="filter"><a href="#">Corporate</a></li>
+							<li data-filter="other" class="filter"><a href="#">Other</a></li>
+
+						</ul>
+					</div>
+
+				</div>
+
+				<div id="portfolio" class="portfolio-nogutter">
+
+						<div class="row mix-grid">
+
+							<div class="col-md-3 col-sm-4 mix other"><!-- Aida -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/Aida.jpg" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>Now Serving Luxury Cruise Ships!</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix awards"><!-- ISO Certificates of Registration -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/Certifications.jpg" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>ISO Certificates of Registration</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix corporate"><!-- MEXICO’S RISING OFFICE SPACES -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/mexico.png" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>Mexico's rising office spaces</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix residential"><!-- The Hub -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/thehub.png" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>The Hub - Student Residence</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix corporate"><!-- Centre del mon -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/centredelmon.png" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>"El centre del món"</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix other"><!--Harmony at seas-->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/boat.png" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>Harmony at seas</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix residential"><!-- Allegra Condos -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/allegracondos.png" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>Allegra Condos</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix residential"><!-- Hora Nova -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/horaNova.jpg" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>Hora Nova Residence</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix awards"><!--COR™️ 2020 Certification-->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/cor-certified.jpg" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>COR™️ 2020 Certification</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix awards residential"><!-- Narrow home solution -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/projectofyear.jpg" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>Narrow home solution</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix corporate"><!-- Mercury City Tower -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/mercury.jpg" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>Mercury City Tower</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+							<div class="col-md-3 col-sm-4 mix"><!-- Skolkovo Innovation Center -->
+								<div class="item-box">
+									<figure>
+										<img class="img-fluid" src="assets/images/Projects/Skolkovo.jpg" width="600" height="399" alt="">
+									</figure>
+									<div class="item-box-desc">
+										<h3>Skolkovo Innovation Center</h3>
+									</div>
+								</div>
+							</div><!-- /item -->
+
+
+						</div>
+
+
+				</div>
+			</section>
+			<!-- /PORTFOLIO -->
+
+
+			<!-- Testimonials -->
+			<section class="section-xs rred">
+				<div class="container">
+
+					<div class="owl-carousel text-center owl-testimonial m-0" data-plugin-options='{"singleItem": true, "autoPlay": 3500, "navigation": false, "pagination": true, "transitionStyle":"fade"}'>
+						<div class="testimonial">
+							<figure>
+								<img class="rounded" src="assets/images/Mathieu.jpg" alt="" />
+							</figure>
+							<div class="testimonial-content p-0">
+								<p class="lead">He loves music and designs his lifts with all the musical notes.</p>
+								<cite>
+									Mathieu
+									<span>CEO</span>
+								</cite>
+							</div>
+						</div>
+						<div class="testimonial">
+							<figure>
+								<img class="rounded" src="assets/images/Teddy.jpg" alt="" />
+							</figure>
+							<div class="testimonial-content p-0">
+								<p class="lead">Young, dynamic, ambitious and passionate, he bring his professional experience and personal qualities, to the smooth running of projects, from study to execution, development and organization of the company.</p>
+								<cite>
+									Teddy
+									<span>Employee of the month</span>
+								</cite>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+			<!-- /Testimonials -->
+
+
+			<!-- News -->
+			<section id="news">
+				<div class="container">
+					<div class="heading-title heading-dotted text-center">
+						<h2>Recent News</h2>
+					</div>
+
+					<!-- 
+						controlls-over		= navigation buttons over the image 
+						buttons-autohide 	= navigation buttons visible on mouse hover only
+						
+						data-plugin-options:
+							"singleItem": true
+							"autoPlay": true (or ms. eg: 4000)
+							"navigation": true
+							"pagination": true
+							"items": "4"
+
+						owl-carousel item paddings
+							.owl-padding-0
+							.owl-padding-3
+							.owl-padding-6
+							.owl-padding-10
+							.owl-padding-15
+							.owl-padding-20
+					-->
+					<div class="owl-carousel owl-padding-10 buttons-autohide controlls-over" data-plugin-options='{"singleItem": false, "items":"3", "autoPlay": 4000, "navigation": true, "pagination": false}'>
+						<div class="img-hover"> <!--Heatherwick-->
+							<a href="https://www.elevatorscenestudio.com/blog/2020/7/18/heatherwick-studios-ultra-luxury-residence-nicknamed-eden-blossoms-out-of-singapores-skyline">
+								<img class="img-fluid" src="assets/images/news/Heatherwick.jpg" alt="">
+							</a>
+
+							<h4 class="text-left mt-20"><a href="https://www.elevatorscenestudio.com/blog/2020/7/18/heatherwick-studios-ultra-luxury-residence-nicknamed-eden-blossoms-out-of-singapores-skyline">Heatherwick Studio's</a></h4>
+							<p class="text-left">Heatherwick Studio's Ultra-Luxury Residence Blossoms Out of Singapore's Skyline</p>
+							<ul class="text-left fs-12 list-inline list-separator">
+								<li>
+									<i class="fa fa-calendar"></i> 
+									18th July 2020
+								</li>
+								<!-- <li>
+									<a href="blog-single-default.html#comments">
+										<i class="fa fa-comments"></i> 
+										3
+									</a>
+								</li> -->
+							</ul>
+						</div>
+						<div class="img-hover"> <!--Manners-->
+							<a href="https://www.elevatorscenestudio.com/blog/2020/6/6/if-you-want-to-learn-about-elevator-manners-go-to-nihonbashi-takashimaya-in-tokyo-japan">
+								<img class="img-fluid" src="assets/images/news/Manners.jpg" alt="">
+							</a>
+
+							<h4 class="text-left mt-20"><a href="https://www.elevatorscenestudio.com/blog/2020/6/6/if-you-want-to-learn-about-elevator-manners-go-to-nihonbashi-takashimaya-in-tokyo-japan">About elevator manners</a></h4>
+							<p class="text-left">If you want to learn about elevator manners, go to Nihonbashi Takashimaya in Tokyo, Japan.</p>
+							<ul class="text-left fs-12 list-inline list-separator">
+								<li>
+									<i class="fa fa-calendar"></i> 
+									6th June 2020
+								</li>
+							</ul>
+						</div>
+						<div class="img-hover"> <!--Art-->
+							<a href="https://www.elevatorscenestudio.com/blog/2020/7/18/extraordinary-art-deco-elevator-designs-from-around-the-world">
+								<img class="img-fluid" src="assets/images/news/Art.jpg" alt="">
+							</a>
+
+							<h4 class="text-left mt-20"><a href="https://www.elevatorscenestudio.com/blog/2020/7/18/extraordinary-art-deco-elevator-designs-from-around-the-world">Art Deco</a></h4>
+							<p class="text-left">Extraordinary Art Deco Elevator Designs From Around the World</p>
+							<ul class="text-left fs-12 list-inline list-separator">
+								<li>
+									<i class="fa fa-calendar"></i> 
+									18th July 2020
+								</li>
+							</ul>
+						</div>
+						<div class="img-hover"> <!--Skyscraper-->
+							<a href="https://www.elevatorscenestudio.com/blog/2020/6/13/history-of-the-mile-high-skyscraper">
+								<img class="img-fluid" src="assets/images/news/Skyscraper.jpg" alt="">
+							</a>
+
+							<h4 class="text-left mt-20"><a href="https://www.elevatorscenestudio.com/blog/2020/6/13/history-of-the-mile-high-skyscraper">Mile High Skyscraper</a></h4>
+							<p class="text-left">Part 1 | The Definitive History of Frank Lloyd Wrights Mile High Skyscraper</p>
+							<ul class="text-left fs-12 list-inline list-separator">
+								<li>
+									<i class="fa fa-calendar"></i> 
+									29th Jan 2017
+								</li>
+								<!-- <li>
+									<a href="blog-single-default.html#comments">
+										<i class="fa fa-comments"></i> 
+										3
+									</a>
+								</li> -->
+							</ul>
+						</div>
+						<div class="img-hover"><!--Arab Art Museum-->
+							<a href="https://www.elevatorscenestudio.com/blog/2020/4/13/conceptual-modern-arab-art-museum-in-sharjah-featuring-towering-barjeels-inspired-by-surrounding-sand-dunes">
+								<img class="img-fluid" src="assets/images/news/ArabeArtMuseum.jpg" alt="">
+							</a>
+							<h4 class="text-left mt-20"><a href="https://www.elevatorscenestudio.com/blog/2020/4/13/conceptual-modern-arab-art-museum-in-sharjah-featuring-towering-barjeels-inspired-by-surrounding-sand-dunes">Arab Art Museum</a></h4>
+							<p class="text-left">Conceptual Modern Arab Art Museum in Sharjah Featuring Towering Barjeel's Inspired by Surrounding Sand Dunes</p>
+							<ul class="text-left fs-12 list-inline list-separator">
+								<li>
+									<i class="fa fa-calendar"></i> 
+									13th Apr 2020
+								</li>
+							</ul>
+						</div>
+						<div class="img-hover"><!--Carparks Elevators-->
+							<a href="https://www.elevatorscenestudio.com/blog/2020/3/31/mechanization-taking-command-in-a-robotic-carpark-1921">
+								<img class="img-fluid" src="assets/images/news/CarElevator.jpg" alt="">
+							</a>
+							<h4 class="text-left mt-20"><a href="https://www.elevatorscenestudio.com/blog/2020/3/31/mechanization-taking-command-in-a-robotic-carpark-1921">Carparks Elevators</a></h4>
+							<p class="text-left">Mechanization Taking Command in Elevator Carparks</p>
+							<ul class="text-left fs-12 list-inline list-separator">
+								<li>
+									<i class="fa fa-calendar"></i> 
+									31th Mar 2020
+								</li>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</section>
+			<!-- /News -->
+
+			<!-- Clients -->
+			<section id="clients" class="alternate">
+				<div class="container">
+
+					<div class="heading-title heading-dotted text-center">
+						<h2>Our Clients</h2>
+					</div>
+
+					<ul class="row clients-dotted list-inline">
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank" href="https://www.adobe.com/">
+								<img class="img-fluid" src="assets/images/logo/adobe.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://www.blablacar.com/">
+								<img class="img-fluid" src="assets/images/logo/blablacar.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://aws.amazon.com/">
+								<img class="img-fluid" src="assets/images/logo/amazon.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://transferwise.com/">
+								<img class="img-fluid" src="assets/images/logo/transfertwise.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://slack.com/">
+								<img class="img-fluid" src="assets/images/logo/slack.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://www.apple.com/">
+								<img class="img-fluid" src="assets/images/logo/apple.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://www.uber.com/">
+								<img class="img-fluid" src="assets/images/logo/uber.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://bear.app/">
+								<img class="img-fluid" src="assets/images/logo/bear.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://www.booking.com/">
+								<img class="img-fluid" src="assets/images/logo/booking.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://asana.com/">
+								<img class="img-fluid" src="assets/images/logo/asana.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://www.airbnb.com/">
+								<img class="img-fluid" src="assets/images/logo/airbnb.png" alt="client" />
+							</a>
+						</li>
+						<li class="col-md-2 col-sm-4 col-6">
+							<a target="_blank"href="https://www.disneyplus.com/">
+								<img class="img-fluid" src="assets/images/logo/disney.png" alt="client" />
+							</a>
+						</li>
+					</ul>
+
+				</div>
+			</section>
+			<!-- /Clients -->
+
+
+
+
+			<!-- CONTACT -->
+			<section id="contact">
+				<div class="container">
+
+					<header class="text-center mb-60">
+						<h2>Contact Us</h2>
+						<p class="lead font-lato">Lorem ipsum dolor sit amet adipiscium elit</p>
+						<hr />
+					</header>
+
+
+					<div class="row">
+
+						<!-- FORM -->
+						<div class="col-md-7 col-sm-7">
+
+							<h3>Drop us a line or just say <strong><em>Hello!</em></strong></h3>
+
+							
+							<!--
+								MESSAGES
+								
+									How it works?
+									The form data is posted to php/contact.php where the fields are verified!
+									php.contact.php will redirect back here and will add a hash to the end of the URL:
+										#alert_success 		= email sent
+										#alert_failed		= email not sent - internal server error (404 error or SMTP problem)
+										#alert_mandatory	= email not sent - required fields empty
+										Hashes are handled by assets/js/contact.js
+
+									Form data: required to be an array. Example:
+										contact[email][required]  WHERE: [email] = field name, [required] = only if this field is required (PHP will check this)
+										Also, add `required` to input fields if is a mandatory field. 
+										Example: <input required type="email" value="" class="form-control" name="contact[email][required]">
+
+									PLEASE NOTE: IF YOU WANT TO ADD OR REMOVE FIELDS (EXCEPT CAPTCHA), JUST EDIT THE HTML CODE, NO NEED TO EDIT php/contact.php or javascript
+												 ALL FIELDS ARE DETECTED DINAMICALY BY THE PHP
+
+									WARNING! Do not change the `email` and `name`!
+												contact[name][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
+												contact[email][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
+							-->
+
+							<!-- Alert Success -->
+							<div id="alert_success" class="alert alert-success mb-30">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<strong>Thank You!</strong> Your message successfully sent!
+							</div><!-- /Alert Success -->
+
+
+							<!-- Alert Failed -->
+							<div id="alert_failed" class="alert alert-danger mb-30">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<strong>[SMTP] Error!</strong> Internal server error!
+							</div><!-- /Alert Failed -->
+
+
+							<!-- Alert Mandatory -->
+							<div id="alert_mandatory" class="alert alert-danger mb-30">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<strong>Sorry!</strong> You need to complete all mandatory (*) fields!
+							</div><!-- /Alert Mandatory -->
+
+
+							<form action="php/contact.php" method="post" enctype="multipart/form-data">
+								<fieldset> <!--FORM-->
+									<input type="hidden" name="action" value="contact_send" />
+
+									<div class="row"> <!--Names-->
+											<div class="col-md-6">
+												<label for="contact:company">Company Name *</label>
+												<input required type="text" value="" class="form-control" name="contact[company][required]" id="contact:company">
+											</div>
+											<div class="col-md-6">
+												<label for="contact:name">Full Name *</label>
+												<input required type="text" value="" class="form-control" name="contact[name][required]" id="contact:name">
+											</div>
+									</div>
+									<div class="row"> <!--Communication-->
+										<div class="col-md-7">
+											<label for="contact:email">E-mail Address *</label>
+											<input required type="email" value="" class="form-control" name="contact[email][required]" id="contact:email">
+										</div>
+										<div class="col-md-5">
+											<label for="contact:phone">Phone</label>
+											<input type="text" value="" class="form-control" name="contact[phone]" id="contact:phone">
+										</div>
+									</div>
+									<div class="row"> <!--Project-->
+											<div class="col-md-8">
+												<label for="contact:project">Project Name *</label>
+												<input required type="text" value="" class="form-control" name="contact[project][required]" id="contact:project">
+											</div>
+											<div class="col-md-4">
+												<label for="contact_department">Department</label>
+												<select class="form-control pointer" name="contact[department]">
+													<option value="">--- Select ---</option>
+													<option value="Marketing">Residential</option>
+													<option value="Webdesign">Corporate</option>
+												</select>
+											</div>
+									</div>
+									<div class="row"> <!--Description-->
+										<div class="col-md-12"> 
+											<label for="contact:description">Project Description *</label>
+											<input required type="text" value="" class="form-control" name="contact[description][required]" id="contact:description">
+										</div>
+									</div>
+									<div class="row"> <!--Message-->
+											<div class="col-md-12">
+												<label for="contact:message">Message *</label>
+												<textarea required maxlength="10000" rows="8" class="form-control" name="contact[message]" id="contact:message"></textarea>
+											</div>
+									</div>
+									<div class="row"> <!--Attachment-->
+											<div class="col-md-12">
+												<label for="contact:attachment">File Attachment</label>
+
+												<!-- custom file upload -->
+												<input class="custom-file-upload" type="file" id="file" name="contact[attachment]" id="contact:attachment" data-btn-text="Select a File" />
+												<small class="text-muted block">Max file size: 10Mb (zip/pdf/jpg/png)</small>
+
+											</div>
+									</div>
+								</fieldset>
+
+								<div class="row"> <!--submit-->
+									<div class="col-md-12">
+										<button type="submit" class="btn btn-rblue"><i class="fa fa-check"></i> SEND MESSAGE</button>
+									</div>
+								</div>
+							</form>
+
+						</div>
+						<!-- /FORM -->
+
+
+						<!-- INFO MAP -->
+						<div class="col-md-5 col-sm-5">
+
+							<h2>Visit Us</h2>
+
+							<iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2729.042993784807!2d-71.28188348419535!3d46.84284354841596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb897d0e1cafe3f%3A0x9863b2d992c71670!2sCodeBoxx!5e0!3m2!1sen!2sca!4v1599424130396!5m2!1sen!2sca" width="100%" height="600" frameborder="0" style="border:0;" aria-hidden="false" tabindex="0"></iframe>
+
+							<hr />
+
+							<p id="infos">
+								<span class="block"><strong><i class="fa fa-map-marker"></i> Address:</strong> 418-725 Boulevard Lebourgneuf,Québec,Canada</span>
+								<span class="block"><strong><i class="fa fa-phone"></i> Phone:</strong> <a href="tel:1581-701-0303">581 701-0303</a></span>
+								<span class="block"><strong><i class="fa fa-envelope"></i> Email:</strong> <a href="mailto:info@codeboxx.biz">info@codeboxx.biz</a></span>
+							</p>
+
+							<hr />
+
+						</div>
+						<!-- /INFO -->
+
+					</div>
+
+				</div>
+			</section>
+			<!-- /CONTACT -->
+
+
+
+
+			<!-- FOOTER -->
+			<footer id="footer">
+				<div class="container">
+
+
+					<div class="row">
+
+						<!-- col #1 -->
+						<div class="col-md-8">
+
+							<h3 class="letter-spacing-1">WHY US?</h3>
+
+							<!-- Small Description -->
+							<p>
+								Models to fit every budget, broad range of styles that blend perfectly into any home décor, delivers a smooth, quiet ride, Improves your home accessibility and enhances your quality of life, Allows you to stay in your home for long as you would like, Installed and serviced by trained elevator specialists, Backed by more than 50 years of industry expertise, Full 3-year limited parts warranty, Family owned and operated business, dedicated to providing the performance and value you deserve.
+							</p>
+							<h2>(581) 701-0303</h2>
+						</div>
+						<!-- /col #1 -->
+
+						<!-- col #2 -->
+						<div class="col-md-4">
+							<h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
+
+							<!-- Newsletter Form -->
+							<p>Subscribe to Our Newsletter to get Important News & Offers</p>
+
+							<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+									<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
+									<span class="input-group-btn">
+										<button class="btn btn-rblue" type="submit">Subscribe</button>
+									</span>
+								</div>
+							</form>
+							<!-- /Newsletter Form -->
+
+
+						</div>
+						<!-- /col #2 -->
+
+					</div>
+
+
+				</div>
+
+				<div class="copyright">
+					<div class="container">
+						<ul class="float-right m-0 list-inline mobile-block">
+							<li><a href="#">Terms &amp; Conditions</a></li>
+							<li>&bull;</li>
+							<li><a href="#">Privacy</a></li>
+						</ul>
+						&copy; All Rights Reserved, Company LTD
+					</div>
+				</div>
+
+			</footer>
+			<!-- /FOOTER -->
+
+		</div>
+		<!-- /wrapper -->
+
+
+		<!-- SCROLL TO TOP -->
+		<a href="#" id="toTop"></a>
+
+
+		<!-- PRELOADER -->
+		<div id="preloader">
+			<div class="inner">
+				<span class="loader"></span>
+			</div>
+		</div><!-- /PRELOADER -->
+
+
+		<!-- JAVASCRIPT FILES -->
+		<script>var plugin_path = 'assets/plugins/';</script>
+		<script src="assets/plugins/jquery/jquery-3.3.1.min.js"></script>
+
+		<script src="assets/js/scripts.js"></script>
+		
+		<!-- STYLESWITCHER - REMOVE 
+		<script async src="demo_files/styleswitcher/styleswitcher.js"></script> -->
+
+		<!-- REVOLUTION SLIDER -->
+		<script src="assets/plugins/slider.revolution/js/jquery.themepunch.tools.min.js"></script>
+		<script src="assets/plugins/slider.revolution/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="assets/js/view/demo.revolution_slider.js"></script>
+
+		<!-- PAGELEVEL SCRIPTS -->
+		<script src="assets/js/contact.js"></script>
+	</body>
+</html>

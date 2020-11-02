@@ -1,0 +1,5 @@
+<!--JORGE Chart test section-->
+		<div class="container col-4">
+		  <%= pie_chart Column.group(:type_building).count %>
+		  <%= column_chart Elevator.group(:model).count %>
+		</div>

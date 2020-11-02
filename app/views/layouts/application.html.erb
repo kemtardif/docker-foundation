@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rocket Elevator</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_include_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <script>var plugin_path = '../assets/'</script>
+
+  </head>
+  		<!-- WRAPPER -->
+			<div id="wrapper">
+							
+					<!-- Top Nav -->
+					<div id="header" class="navbar-toggleable-md header-md clearfix sticky rgray">
+
+						<header id="topNav">
+							<div class="container">
+
+								<!-- Mobile Menu Button -->
+									<button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+											<i class="fa fa-bars"></i>
+									</button>
+
+									<!-- Logo -->
+									<a class="logo float-left scrollTo" href="#topNav">
+											<%= image_tag("R2.png", :alt => "") %>
+									</a>
+									<!-- Menu -->
+									<div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+										<nav class="nav-main">
+
+											<ul id="topMain" class="nav nav-pills nav-main nav-onepage">
+													<li class="active"><!-- HOME -->
+															<a href="<%= home_path %>">
+																	HOME
+															</a>
+													</li>
+													<li><!-- SERVICES -->
+															<a class="dropdown-toggle" href="/#services">
+																	SERVICES
+															</a>
+															<ul class="dropdown-menu">
+																	<li>
+																			<a href="<%= residential_path %>">Residential</a>
+																	</li>
+																	<li>
+																			<a href="<%= corporate_path %>">Corporate</a>
+																	</li>
+																	<li class="divider"></li>
+																	<li>
+																			<a href="<%= quote_path %>">Get a quote</a>
+																	</li>
+															</ul>
+													</li>
+													<li><!-- WORK -->
+															<a href="/#work">
+																	PORTFOLIO
+															</a>
+													</li>
+													<li><!-- NEWS -->
+														<a href="/#news">
+															NEWS
+														</a>
+													</li>
+													<li><!-- CLIENTS -->
+														<a href="/#clients">
+															CLIENTS
+														</a>
+													</li>
+													<li><!-- CONTACT -->
+														<a href="/#contact">
+															CONTACT
+														</a>
+													</li>
+													<li><!-- SGN IN -->
+													<% if current_user %>
+                                                        <%= link_to "LOGOUT", destroy_user_session_path, method: :delete %>
+                                                    <% else %>
+                                                        <%= link_to "LOGIN", "/login" %> <!-- new_user_session_path-->
+                                                    <% end %>
+													</li>
+													<li><!-- AMDIN -->
+													<% if current_user %>
+                                                        <%= link_to "ADMIN", "/admin" %>
+                                                    <% end %>
+													</li>
+											</ul>
+										</nav>
+									</div>
+								</div>
+							</header>
+						<!-- /Top Nav -->
+					</div>
+
+						<% if notice %>
+							<p class="alert alert-success"><%= notice %></p>
+						<% end %>
+						<% if alert %>
+							<p class="alert alert-danger"><%= alert %></p>
+						<% end %>
+							
+					<%= yield %>
+
+					<!-- FOOTER -->
+					<footer id="footer">
+						<div class="container">
+
+
+							<div class="row">
+
+								<!-- col #1 -->
+								<div class="col-md-8">
+
+									<h3 class="letter-spacing-1">WHY US?</h3>
+
+									<!-- Small Description -->
+									<p>
+										Models to fit every budget, broad range of styles that blend perfectly into any home décor, delivers a smooth, quiet ride, Improves your home accessibility and enhances your quality of life, Allows you to stay in your home for long as you would like, Installed and serviced by trained elevator specialists, Backed by more than 50 years of industry expertise, Full 3-year limited parts warranty, Family owned and operated business, dedicated to providing the performance and value you deserve.
+									</p>
+									<h2>(581) 701-0303</h2>
+								</div>
+								<!-- /col #1 -->
+
+								<!-- col #2 -->
+								<div class="col-md-4">
+									<h3 class="letter-spacing-1">KEEP IN TOUCH</h3>
+
+									<!-- Newsletter Form -->
+									<p>Subscribe to Our Newsletter to get Important News & Offers</p>
+
+									<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+											<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
+											<span class="input-group-btn">
+												<button class="btn btn-rblue" type="submit">Subscribe</button>
+											</span>
+										</div>
+									</form>
+									<!-- /Newsletter Form -->
+								</div>
+								<!-- /col #2 -->
+							</div>
+						</div>
+
+						<div class="copyright">
+							<div class="container">
+								<ul class="float-right m-0 list-inline mobile-block">
+									<li><a href="#">Terms &amp; Conditions</a></li>
+									<li>&bull;</li>
+									<li><a href="#">Privacy</a></li>
+								</ul>
+								&copy; All Rights Reserved, Company LTD
+							</div>
+						</div>
+
+					</footer>
+				<!-- FOOTER -->
+			</div>
+		<!-- /WRAPPER -->
+  </body>
+</html>

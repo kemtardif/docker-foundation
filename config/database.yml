@@ -1,0 +1,50 @@
+# # Serveur Codeboxx
+# development:
+#   adapter: mysql2  
+#   encoding: utf8  
+#   username: codeboxx  
+#   password: Codeboxx1!  
+#   host: codeboxx.cq6zrczewpu2.us-east-1.rds.amazonaws.com  
+#   port: 3306  
+#   database: TeddyBlanco
+
+# warehouse_development:
+#   adapter: postgresql 
+#   encoding: unicode  
+#   username: codeboxx
+#   password: Codeboxx1!
+#   port: 5432
+#   host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
+#   database: warehouseTB
+  
+# warehouse_test:
+#   <<: *default
+#   database: warehouse_test
+# warehouse_production:
+#   <<: *default
+#   url: <%= ENV['WAREHOUSE_DATABASE_URL'] %>
+
+
+# Serveur local
+development:  
+  adapter: mysql2  
+  encoding: utf8   
+  username: team1
+  password: team1
+  host: 127.0.0.1
+  port: 3306 
+  database: Rocket_Elevators_Information_System_development
+warehouse_development:
+  adapter: postgresql 
+  encoding: unicode  
+  username: tonted
+  password: 
+  host: 127.0.0.1
+  port: 5432
+  database: warehouse_development
+# warehouse_test:
+#   <<: *default
+#   database: warehouse_test
+# warehouse_production:
+#   <<: *default
+#   url: <%= ENV['WAREHOUSE_DATABASE_URL'] %>
