@@ -95,5 +95,8 @@ gem 'faker'
 #JORGE - Data visualization Extra Mille
 gem 'chartkick'
 
+
+# Week 7 
+gem 'sendgrid-ruby'
 gem 'zendesk_api'
 gem 'figaro'
