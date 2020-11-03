@@ -94,3 +94,6 @@ gem 'faker'
 
 #JORGE - Data visualization Extra Mille
 gem 'chartkick'
+
+gem 'zendesk_api'
+gem 'figaro'
