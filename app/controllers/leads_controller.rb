@@ -5,7 +5,8 @@ class LeadsController < ApplicationController
     end
     def create        
       @lead = Lead.new(lead_params)   
-      @lead.save!     
+      @lead.save!  
+         
     end
     def lead_params        
       params.permit(  :full_name,
