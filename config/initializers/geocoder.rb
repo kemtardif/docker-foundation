@@ -21,4 +21,3 @@ Geocoder.configure(
   cache_prefix: "..."
 
 )
-)
