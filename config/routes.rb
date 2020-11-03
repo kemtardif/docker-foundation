@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post "/quotes"      => "quotes#create"
 
   match '/watson'     => 'watson#speak', via: :get
+  match '/watson/st'  => 'watson#starwars', via: :post
+ 
    
   devise_scope :user do 
     get '/login' => 'devise/sessions#new' 
