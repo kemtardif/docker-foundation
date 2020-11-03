@@ -8,7 +8,7 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-# /log/*
+/log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
@@ -31,3 +31,6 @@ config/database.yml
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore all log files
+/log/*
