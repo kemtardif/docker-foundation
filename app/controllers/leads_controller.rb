@@ -7,9 +7,9 @@ class LeadsController < ApplicationController
   require 'sendgrid-ruby'
   include SendGrid
   def create        
-    # @lead = Lead.new(lead_params)   
-    # @lead.save!  
-    # helpers.ticket(lead_params)
+    @lead = Lead.new(lead_params)   
+    @lead.save!  
+    helpers.ticket(lead_params)
 
 
       full_name = params[:full_name]
@@ -33,7 +33,7 @@ class LeadsController < ApplicationController
     mail.template_id = 'd-c6ab731e2c5249cf8f7405d6cf96fbfe'
 
     puts mail.inspect
-
+    
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     begin
         response = sg.client.mail._("send").post(request_body: mail.to_json)
@@ -42,40 +42,7 @@ class LeadsController < ApplicationController
     end
     puts response.status_code
     puts response.body
-    # puts response.parsed_body
     puts response.headers
-
-    
-    # data = JSON.parse('{
-    #   "personalizations": [
-    #     {
-    #       "to": [
-    #         {
-    #           "email": #{email}
-    #         }
-    #       ],
-    #       "dynamic_template_data": {
-    #         "subject": "Testing Templates 2",
-    #         "name": "Example UserAAA",
-    #         "city": "Montreal"
-    #       }
-    #     }
-    #   ],
-    #   "from": {
-    #     "email": "cindy-okino@hotmail.com"
-    #   },
-    #   "template_id": "d-c6ab731e2c5249cf8f7405d6cf96fbfe"
-    # }')
-    # sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-    # begin
-    #     response = sg.client.mail._("send").post(request_body: data)
-    # rescue Exception => e
-    #     puts e.message
-    # end
-    # puts response.status_code
-    # puts response.body
-    # # puts response.parsed_body
-    # puts response.headers
   end
 
   
