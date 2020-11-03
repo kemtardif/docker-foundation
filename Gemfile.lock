@@ -138,6 +138,7 @@ GEM
     haml (5.2.0)
       temple (>= 0.8.0)
       tilt
+    hashie (4.1.0)
     http (4.1.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -153,9 +154,6 @@ GEM
       concurrent-ruby (~> 1.0)
       http (~> 4.1.0)
       jwt (~> 2.2.1)
-    hashie (4.1.0)
-    i18n (1.8.5)
-      concurrent-ruby (~> 1.0)
     inflection (1.0.0)
     io-like (0.3.1)
     jbuilder (2.10.1)
