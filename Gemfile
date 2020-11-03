@@ -101,6 +101,8 @@ gem 'chartkick'
 gem 'sendgrid-ruby'
 gem 'zendesk_api'
 gem 'figaro'
+gem 'geocoder'
 gem 'twilio-ruby'
 gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', branch: 'master'
 gem 'slack-notifier'
+
