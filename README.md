@@ -1,65 +1,92 @@
-# Rocket_Elevators_Information_System
-Application for website of the Company of Rocket Elevators
-## URL
-<https://tonted.xyz/>
-## Gems used
-* gem 'devise'
-* gem 'rails_admin'
-* gem 'rails_admin_rollincode'
-* gem 'multiverse'
-* gem 'cancancan'
-* gem 'rolify'
-* gem 'faker'
-### pour la creation des tables dans mysql avec migration
-rails g migration CreateTableName
-pour leads, address, customers, buildings, buildingdetails, batteries, columns et elvator
-### pour la creation des tables dans postgres avec migration
-DB=warehouse rails g migration CreateTableName
-pour factquotes, factelevators, dimcustomers
-### pour les seeds
-faker a ete utiliser pour la creation de donnees fictive
-https://github.com/faker-ruby/faker#default
-## Infos development:
-### After pull:
+# Rocket_Elevators_API
+
+Implementation of seven APIs on Rocket Elevator's RAILS application
+
+## Zendesk
+
+### Requirements:
+
+The ZenDesk platform can be powered by a call to the API and the software can then process requests depending on the type.
+
+
+- The website's “Contact Us” form creates a new “Question” type ticket in ZenDesk
+- The website's “Get a Quote” form creates a new “Task” type ticket in ZenDesk
+- The tickets created are visible in the ZenDesk Console and it is possible to respond to them or even manage a workflow for these contacts.
+- The content of each ticket created must include the contact information which has been stored in the database:
+
+Subject: [Full Name] *from* [Company Name]
+Comment: *The contact* [Full Name] *from company* [Company Name] *can be reached at email*  [E-Mail Address] *and at phone number* [Phone]. [Department] *has a project named* [Project Name] *which would require contribution from Rocket Elevators. *
+[Project Description]
+
+*Attached Message:* [Message]
+
+*The Contact uploaded an attachment*
+
+
+### Gems used:
+
+```ruby 
+gem 'zendesk_api' # Ruby wrapper for the REST API at https://www.zendesk.com.
+
+gem 'figaro' #Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
 ```
-bundle install
-rails db:drop
-rails db:create
-rails db:migrate
+
+### Explanations:
+Creating a helper `ticket_helper.rb` for call the API and use de gem `'zendesk_api'`, it will get the params of leads or quotes, format the ticket, and post them.
+```ruby
+require 'zendesk_api'
+
+module TicketHelper
+	def ticket(params)
+		client = ZendeskAPI::Client.new do |config|
+			
+				config.url = "https://tonted.zendesk.com/api/v2"
+				config.username = ENV["ZENDESK_USERNAME"]
+				config.token = ENV["ZENDESK_TOKEN"]
+				config.retry = true
+				config.raise_error_when_rate_limited = false
+				
+				require 'logger'
+				config.logger = Logger.new(STDOUT)				
+		end
+
+			subject = "#{params['full_name']} from #{params['company_name']}"
+			comment = "The contact #{params['full_name']} from company #{params['company_name']} can be reached at email  #{params['email']} and at phone number #{params['phone_number']}. #{params['department']} has a project named #{params['project_name']} which would require contribution from Rocket Elevators.\n Project description: #{params['project_description']}\nAttached Message: #{params['message']}"
+
+			ticket = ZendeskAPI::Ticket.new(client, :subject => subject, :comment => { :body => comment })
+			ticket.save!
+	end
+end
 ```
-~~rails db:seed~~
-### pour operer dans la Database postgres
-DB=warhouse rails db:drop
-DB=warhouse rails db:create
-DB=warhouse rails db:migrate
-### pour populler la warehouse
-### nous avons utiliser des rake task
-### a linterieur de du dossier lib/task importdata.rake
-rake dwh:mysql
-    - pour etablir la connection avec le serveur local mysql
-rake dwh:postgres
-    - connecter avec postgres specifiquement
-    -pgsqltest = PG.connect( host: "localhost", dbname: 'warehouse_development', user: connect[0], password: connect[1] )
-rake dwh:fact_contact
-    - incorpore les donnees de la table leads(mysql) a la table fact_contact(postgres)
-rake dwh:fact_elevator
-    - incorpore les donnees de la table elevator(qui consiste dune boucle imbriquer customer=>building=>batteries=>columns=>elevators(mysql)) a la table fact_elevator(postgres)
-rake dwh:fact_quote
-    - incorpore les donnees de la table quote(mysql) a la table fact_quote(postgres)
-rake dwh:dimcustomer
-    - ici on cest baser du meme principe que la fact_elevator task (boucle imbriqer) avec quelque modification pour aller chercher le montant d elevator
-### pour faire les relations entre les DB nous avons utilisers
-has_many    :(dependant de quoi ex: customer)
-belongs_to  :(dependant de quoi ex: customer)
-has_one     :(dependant de quoi ex: customer)
-### notes pour le admin
-le diagram des relations entre les tables elle est disponible dans longlet diagram en dessous de datavisualization ( charts en extra )
-### Config alias:
-### Access to Dashboard:
-***email:*** admin@tonted.xyz
-***password:*** password
+In the controllers of leads and quotes we call a helpers called `ticket` with the parameters. *(exemple leads controller)*
+```ruby
+class LeadsController < ApplicationController
+  def new  
+    @lead = Lead.new     
+  end
+
+  def create        
+    @lead = Lead.new(lead_params)   
+    @lead.save!  
+    helpers.ticket(lead_params)
+  end
+  
+  def lead_params        
+    params.permit(  :full_name,
+      :company_name,
+      :email,
+      :phone_number,
+      :project_name,
+      :project_description,
+      :department,
+      :message,
+      :attached_file )     
+  end
+end
+```
+
 ## Developpers
-* **Jean-François Taillefer**
-* **Alexandre Leblanc**
-* **Jorge Marcoux**
-* **Teddy Blanco**
+- Cindy Okino (Team Leader)
+- Kem Tardif
+- Kiefer Rivard
+- Teddy Blanco

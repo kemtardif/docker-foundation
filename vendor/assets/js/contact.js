@@ -11,12 +11,12 @@ var _hash = window.location.hash;
 **/	jQuery(_hash).show();
 
 /* Jorge Contact form refresh after submit and success alert */
-$(document).ready(function(){
-  $("#cForm").submit(function(){
-	  $("#cForm")[0].reset();
-	  alert("Thank you for your message! We will get back to you ASAP!");
-  });
-})
+// $(document).ready(function(){
+//   $("#cForm").submit(function(){
+// 	  $("#cForm")[0].reset();
+// 	  alert("Thank you for your message! We will get back to you ASAP!");
+//   });
+// })
 
 	
 
