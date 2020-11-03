@@ -12,37 +12,27 @@ class LeadsController < ApplicationController
     helpers.ticket(lead_params)
 
 
-      full_name = params[:full_name]
-      puts full_name
-      email = params[:email]
-      puts email
-      project_name = params[:project_name]
-      puts project_name
-
+    full_name = params[:full_name]
+    email = params[:email]
+    project_name = params[:project_name]
       
     mail = Mail.new
     mail.from = Email.new(email: 'cindy-okino@hotmail.com')
     personalization = Personalization.new
     personalization.add_to(Email.new(email: email))
     personalization.add_dynamic_template_data({
-        "subject" => "Testing Templates",
-        "fullName" => full_name,
-        "projectName" => project_name
-      })
+      "fullName" => full_name,
+      "projectName" => project_name
+    })
     mail.add_personalization(personalization)
     mail.template_id = 'd-c6ab731e2c5249cf8f7405d6cf96fbfe'
-
-    puts mail.inspect
     
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     begin
         response = sg.client.mail._("send").post(request_body: mail.to_json)
     rescue Exception => e
         puts e.message
-    end
-    puts response.status_code
-    puts response.body
-    puts response.headers
+    end 
   end
 
   
