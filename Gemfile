@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -95,8 +96,13 @@ gem 'faker'
 #JORGE - Data visualization Extra Mille
 gem 'chartkick'
 
+
+# Week 7 
+gem 'sendgrid-ruby'
 gem 'zendesk_api'
 gem 'figaro'
-
 gem 'geocoder'
+gem 'twilio-ruby'
+gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', branch: 'master'
+gem 'slack-notifier'
 
