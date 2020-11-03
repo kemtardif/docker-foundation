@@ -4,10 +4,15 @@
 # jf = ["postgres", "postgres"]
 
 
-host_ = "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com"
-dbname_ = "warehouseTB"
-user_ = "codeboxx"
-password_ = "Codeboxx1!"
+# host_ = "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com"
+# dbname_ = "warehouseTB"
+# user_ = "codeboxx"
+# password_ = "Codeboxx1!"
+
+host_ = "localhost"
+dbname_ = "warehouse_development"
+user_ = "postgres"
+password_ = "admin"
 
 
 # make sure to connect the good user
@@ -59,7 +64,7 @@ namespace :dwh do
     task fact_quote: :environment do
         conn = PG.connect( host: host_, dbname: dbname_, user: user_, password: password_ )
         puts conn
-        Quote.all.each do |quote|        
+        Quote.all.each do |quote| 
             conn.exec_params(
                 'INSERT INTO fact_quotes (quote_id, creation_date, company_name, email, amount_elevator) VALUES ($1, $2, $3, $4, $5)',
                 [quote.id, quote.create_at, "#{quote.company_name}", "#{quote.email}", quote.elevator_needed])           
