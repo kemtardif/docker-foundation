@@ -5,12 +5,12 @@ class PlacesController < ApplicationController
   # GET /places.json
   def index
     @places = Place.all
+    @datas = helpers.get_data
   end
 
   # GET /places/1
   # GET /places/1.json
   def show
-    @datas = helpers.get_data
   end
 
   # GET /places/new

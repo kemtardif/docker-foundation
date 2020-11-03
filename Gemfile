@@ -98,6 +98,5 @@ gem 'chartkick'
 gem 'zendesk_api'
 gem 'figaro'
 
-gem 'gmaps4rails'
 gem 'geocoder'
 

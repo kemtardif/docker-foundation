@@ -3,7 +3,8 @@ RailsAdmin.config do |config|
   # JORGE - Link to data visualization
   config.navigation_static_links = {
   'Data Visualization' => '/charts',
-  'Diagram'            => '/diagram'
+  'Diagram'            => '/diagram',
+  'Map'                => '/places',                
 }
 
   ### Popular gems integration

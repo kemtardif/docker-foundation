@@ -204,6 +204,7 @@ require 'faker'
     address_.postal_code = $addresses_csv[$iterator_addresses].postal_code
     address_.country = $addresses_csv[$iterator_addresses].country
     address_.notes = Faker::Lorem.paragraph
+    address_.full_street_address = [address_.address, address_.city, address_.postal_code, address_.country].compact.join(', ')
     $iterator_addresses += 1
     # puts $iterator_addresses
     return address_
