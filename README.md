@@ -85,6 +85,59 @@ class LeadsController < ApplicationController
 end
 ```
 
+## SendGrid
+
+### Requirements:
+
+The SendGrid API is a historic and essential service provider in the field of email communication.
+
+
+- The website's “Contact Us” form will send a transactional thank-you email with an dynamic template using the full name, company name and email from the inputs.
+
+
+### Gems used:
+
+```ruby 
+gem 'sendgrid-ruby' # Ruby wrapper for the REST API at https://www.sendgrid.com
+
+gem 'figaro' #Simple, Heroku-friendly Rails app configuration using ENV and a single YAML file
+```
+
+### Explanations:
+Incorporating the code below to the existing `create` function at `leads_controller.rb` for call the API and use de gem `'sendgrid-ruby'`, it will get the params from the contact us form and get the dynamic template from sendgrid in order to send the email.
+```ruby
+require 'sendgrid-ruby'
+  include SendGrid
+  def create        
+    @lead = Lead.new(lead_params)   
+    @lead.save!  
+    helpers.ticket(lead_params)
+
+
+    full_name = params[:full_name]
+    email = params[:email]
+    project_name = params[:project_name]
+      
+    mail = Mail.new
+    mail.from = Email.new(email: 'cindy-okino@hotmail.com')
+    personalization = Personalization.new
+    personalization.add_to(Email.new(email: email))
+    personalization.add_dynamic_template_data({
+      "fullName" => full_name,
+      "projectName" => project_name
+    })
+    mail.add_personalization(personalization)
+    mail.template_id = 'd-c6ab731e2c5249cf8f7405d6cf96fbfe'
+    
+    sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+    begin
+        response = sg.client.mail._("send").post(request_body: mail.to_json)
+    rescue Exception => e
+        puts e.message
+    end 
+  end
+  ```
+
 ## Developpers
 - Cindy Okino (Team Leader)
 - Kem Tardif
