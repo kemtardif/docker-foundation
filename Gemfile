@@ -97,6 +97,6 @@ gem 'chartkick'
 
 
 # Week 7 
-# CINDY - SendGrid API
 gem 'sendgrid-ruby'
+gem 'zendesk_api'
 gem 'figaro'
