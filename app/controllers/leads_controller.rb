@@ -5,7 +5,7 @@ class LeadsController < ApplicationController
 
   def create        
     @lead = Lead.new(lead_params)   
-    @lead.save!  
+    @lead.save!
     helpers.ticket(lead_params)
   end
   
