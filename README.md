@@ -32,6 +32,9 @@ gem 'figaro' #Simple, Heroku-friendly Rails app configuration using ENV and a si
 ```
 
 ### Explanations:
+
+https://tonted.zendesk.com/
+
 Creating a helper `ticket_helper.rb` for call the API and use de gem `'zendesk_api'`, it will get the params of leads or quotes, format the ticket, and post them.
 ```ruby
 require 'zendesk_api'
