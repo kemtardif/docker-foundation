@@ -295,6 +295,8 @@ require 'faker'
 
 # /functions
 
+department = ["Residential", "Commercial", "Corporate", "Hybrid"]
+
 def faker_data
   type_building = ["Residential", "Corporate", "Commercial", "Hybrid"]
   status_ = ["Offline", "Online", "To_fix"]
@@ -302,29 +304,29 @@ def faker_data
   type_addresses = ["Billing", "Shipping", "Business", "Home"]
   department = ["Residential", "Commercial", "Corporate", "Hybrid"]
 
-    1.upto(50) do |cu|
+    1.upto(10) do |cu|
         puts "Customer #{cu} creates\t"
         customer_ = customer_create()
         
-        1.upto(rand(1..10)) do |bu|
+        1.upto(rand(1..3)) do |bu|
             building_ = building_create(bu)
             customer_.buildings << building_
 
-            1.upto(rand(2..6)) do |ba|
+            1.upto(rand(1..3)) do |ba|
               buildings_detail_ = building_details_create()
               building_.buildings_details << buildings_detail_
             end
 
-            1.upto(rand(2..6)) do |ba|
+            1.upto(rand(1..3)) do |ba|
               battery_ = battery_create(customer_.date_create, type_building, ba, status_)
               building_.batteries << battery_
 
               
-              1.upto(rand(2..6)) do |co|
+              1.upto(rand(1..3)) do |co|
                   column_ = column_create(status_, battery_.type_building, co)
                   battery_.columns << column_  
 
-                  1.upto(rand(2..8)) do |el|
+                  1.upto(rand(1..3)) do |el|
                       elevator_ = elevator_create(models, status_, battery_.type_building, battery_.date_commissioning, el)
                       column_.elevators << elevator_
                   end  
@@ -347,14 +349,11 @@ def faker_data
     end 
 end
 
-# employee()
-# faker_data()
+employee()
+faker_data()
 
-department = ["Residential", "Commercial", "Corporate", "Hybrid"]
-
-1.upto(300) do
-  lead_create(department)
-end
-1.upto(100) do
-  quote_create()
-end
+Place.create!([
+  { "name": "Buckingham Palace", "latitude": "51.501564","longitude": "-0.141944"},
+  { "name": "Westminster Abbey", "latitude": "51.499581", "longitude": "-0.127309"},
+  { "name": "Big Ben", "latitude": "51.500792", "longitude": "-0.124613"}
+  ])
