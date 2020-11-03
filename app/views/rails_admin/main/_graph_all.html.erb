@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>	
+<%= javascript_include_tag 'application', media: 'all' %>
+<script>var plugin_path = '../assets/'</script>
+
+<%= 
+column_chart FactContact.group_by_year(:creation_date).group_by_month(:creation_date).count, 
+title: "Contacts Per Year", label: "Unique Contacts", ytitle: "Contacts", height: "300px" 
+%>
+
+<%= 
+pie_chart FactElevator.group(:customer_id).count(:customer_id), 
+discrete: true, label: "Elevators", title: "Elevators Per Customer", xtitle: "Customer ID", 
+ytitle: "Elevators", height: "300px" 
+%>

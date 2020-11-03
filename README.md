@@ -154,6 +154,14 @@ exist
   5. If the document is successfully downloaded to Dropbox, the controller deletes the
 content of the binary field from the database to avoid duplication
 
+To test this API, you will need to create one or more leads using the 'Contact Us' form and load a file, then you will have to go to the admin panel and create or edit a customer with the same email used to create the leads. Then you will be able to find your folder with the company name and files at dropbox!
+
+Link to the dropbox folder: 
+https://www.dropbox.com/sh/vmjyuwllrcsz79s/AAC2b_FrGy4Sm93C5C16DnG1a?dl=0
+
+Login as an admin to acces the admin panel and create or edit a customer:
+* admin@tonted.xyz
+* password
 
 ### Gems used:
 
@@ -164,8 +172,6 @@ gem 'dropbox_api' # https://github.com/Jesus/dropbox_api
 ### Explanations:
 Incorporating the code below at `customer.rb` file for call the API and use de gem `'dropbox_api'`, creating the function `migrate_attachments_to_dropbox` and calling it with `after_create :migrate_attachments_to_dropbox` and `after_update :migrate_attachments_to_dropbox` when a customer is created or updated.
 
-Link to the dropbox folder: 
-https://www.dropbox.com/sh/vmjyuwllrcsz79s/AAC2b_FrGy4Sm93C5C16DnG1a?dl=0
 ```ruby
     after_create :migrate_attachments_to_dropbox
     after_update :migrate_attachments_to_dropbox  # This line calls the function below after create or update a customer
