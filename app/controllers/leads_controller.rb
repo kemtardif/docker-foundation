@@ -48,4 +48,39 @@ class LeadsController < ApplicationController
                     :attached_file )   
   end
 
+
+  def dropbox
+    client = DropboxApi::Client.new
+# ========TEST VERSION============================================================================================
+    # puts client.inspect
+    # puts "============================"
+    # result = client.create_folder "/50"
+
+    # find lead by email instead id
+    lead = Lead.where(email: 'fadel.filomena@champlin.com').first
+
+    # make a FOR EACH here
+    client.create_folder "/fadel.filomena@champlin.com"
+    lead.attached_file
+    client.upload("/fadel.filomena@champlin.com/test_mcdonald.png", lead.attached_file)
+# ====================================================================================================
+
+# ========FOR EACH - WORKING ON THIS ONE============================================================================================
+    # make a FOR EACH here
+    # find lead by email intead id
+    Lead.where(email: 'cindy.okino@gmail.com') do |lead|
+      
+      client.upload("/test.png", lead.attached_file)
+      # check if its NOT null 
+      unless lead.attached_file.nil?
+        # dropbox - create folder for the user (if there is no folder for the user yet)
+        # dropbox - send file to user's folder
+      end
+    end
+# ====================================================================================================
+
+
+    # puts result.inspect
+  end
+
 end
