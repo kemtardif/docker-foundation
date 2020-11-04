@@ -96,6 +96,8 @@ gem 'faker'
 #JORGE - Data visualization Extra Mille
 gem 'chartkick'
 
+gem 'groupdate', '~> 5.2', '>= 5.2.1'
+
 
 # Week 7 
 gem 'sendgrid-ruby'
