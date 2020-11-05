@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   post '/leads'       => 'leads#create'
   post '/quotes'      => 'quotes#create'
-  post '/dropbox'     => 'leads#dropbox'
    
   devise_scope :user do 
     get "/login" => "devise/sessions#new" 
