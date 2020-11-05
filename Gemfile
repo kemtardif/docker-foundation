@@ -96,6 +96,8 @@ gem 'faker'
 #JORGE - Data visualization Extra Mille
 gem 'chartkick'
 
+gem 'groupdate', '~> 5.2', '>= 5.2.1'
+
 
 # Week 7 
 gem 'sendgrid-ruby'
@@ -107,4 +109,6 @@ gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', bra
 gem 'slack-notifier'
 gem 'dropbox_api'
 gem 'gmaps4rails'
+
+gem 'carrierwave', '~> 2.0'
 

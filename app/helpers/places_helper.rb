@@ -44,7 +44,7 @@ module PlacesHelper
 			data[:infowindow] = comment
 			$datas.append(data)
 		end
-		pp $datas
+		# pp $datas
 		return $datas
 	end
 end

@@ -14,11 +14,10 @@ Rails.application.routes.draw do
   get '/404'          => 'pages#p404'
   get '/charts'       => 'pages#charts'
   get '/diagram'      => 'pages#diagram'
-  
-  get '/googlemaps'   => 'places#googlemaps'
 
   post '/leads'       => 'leads#create'
   post '/quotes'      => 'quotes#create'
+
    
   devise_scope :user do 
     get '/login' => 'devise/sessions#new' 
