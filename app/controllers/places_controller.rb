@@ -5,6 +5,7 @@ class PlacesController < ApplicationController
   # GET /places.json
   def index
     @places = Place.all
+    @datas = helpers.get_data
   end
 
   # GET /places/1
@@ -70,5 +71,9 @@ class PlacesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def place_params
       params.require(:place).permit(:name, :latitude, :longitude)
+    end
+
+    def googlemaps
+      @datas = B
     end
 end

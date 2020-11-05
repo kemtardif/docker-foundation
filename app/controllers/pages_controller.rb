@@ -31,5 +31,5 @@ class PagesController < ApplicationController
     def diagram
     
     end
-
+        
 end

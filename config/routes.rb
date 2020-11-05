@@ -7,19 +7,20 @@ Rails.application.routes.draw do
   root                to: 'pages#home'
 
   get '/corporate'    => 'pages#corporate'
-  get "/home"         => 'pages#home'
+  get '/home'         => 'pages#home'
   get '/error'        => 'pages#p404'
-  get '/quote'        =>  'pages#quote'
+  get '/quote'        => 'pages#quote'
   get '/residential'  => 'pages#residential'
   get '/404'          => 'pages#p404'
   get '/charts'       => 'pages#charts'
   get '/diagram'      => 'pages#diagram'
 
   post '/leads'       => 'leads#create'
-  post "/quotes"      => "quotes#create"
+  post '/quotes'      => 'quotes#create'
+
    
   devise_scope :user do 
-    get "/login" => "devise/sessions#new" 
+    get '/login' => 'devise/sessions#new' 
   end   
 
   

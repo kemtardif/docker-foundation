@@ -34,3 +34,5 @@
 //JORGE - For data visualization - Extra Mille
 //= require chartkick
 //= require Chart.bundle
+
+//= require gmaps/google
