@@ -163,6 +163,9 @@ gem 'dropbox_api' # https://github.com/Jesus/dropbox_api
 
 ### Explanations:
 Incorporating the code below at `customer.rb` file for call the API and use de gem `'sendgrid-ruby'`, creating the function `migrate_attachments_to_dropbox` and calling it with `after_update :migrate_attachments_to_dropbox` when a customer is created or updated.
+
+Link to the dropbox folder: 
+https://www.dropbox.com/home/Aplicativos/RocketElevatorLeadsAttachments
 ```ruby
  after_update :migrate_attachments_to_dropbox  # This line calls the function below after create or update a customer
 
@@ -191,14 +194,6 @@ Incorporating the code below at `customer.rb` file for call the API and use de g
         lead.attached_file = nil;
         lead.save!
       end
-    end
-
-    # The puts below should not be printed if the blob was correctly deleted from the db after the file was sent to dropbox (see code above)
-    Lead.where(email: sta_mail).each do |lead|
-      unless lead.attached_file.nil?
-        puts "===================The BLOB was not deleted!======================"        
-      end
-    end  
     end
   ```
 

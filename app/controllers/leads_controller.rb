@@ -8,8 +8,10 @@ class LeadsController < ApplicationController
   include SendGrid
   def create        
     @lead = Lead.new(lead_params)
-    # @lead.name_attached_file = params[:attached_file]
-    puts lead_params   
+    file_received = params[:attached_file]
+    
+    @lead.attached_file = file_received.read
+    @lead.name_attached_file = file_received.original_filename
     @lead.save!
 
     helpers.ticket_lead(lead_params)

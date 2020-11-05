@@ -17,12 +17,12 @@ class Customer < ApplicationRecord
         unless lead.attached_file.nil?  # check if the attached_file is NOT null
           puts "This model has blob"          
           begin           
-              dropbox_client.create_folder "/customer_id_" + self.id.to_s   # create a folder named (use the customer_id) if there is no folder for this customer yet
+              dropbox_client.create_folder "/customer_id_" + self.id.to_s    # create a folder named (use the customer id and email) if there is no folder for this customer yet
           rescue DropboxApi::Errors::FolderConflictError => err
             puts "Folder already exists in path, ignoring folder creation. Continue to upload files."
           end  
           begin
-            dropbox_client.upload("/customer_id_" + self.id.to_s + "/attachment_" + lead.id.to_s, lead.attached_file)    # send file to user's folder at dropbox
+            dropbox_client.upload("/customer_id_" + self.id.to_s + "/" + lead.name_attached_file, lead.attached_file)    # send file to user's folder at dropbox
           rescue DropboxApi::Errors::FileConflictError => err
             puts "File already exists in folder, ignoring file upload. Continue to delete file from database."
           end  
