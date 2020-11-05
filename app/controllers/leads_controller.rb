@@ -8,6 +8,7 @@ class LeadsController < ApplicationController
   include SendGrid
   def create        
     @lead = Lead.new(lead_params)
+    # @lead.name_attached_file = params[:attached_file]
     puts lead_params   
     @lead.save!
 
