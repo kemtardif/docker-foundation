@@ -17,8 +17,8 @@ class Customer < ApplicationRecord
         puts "Folder already exists in path, ignoring folder creation. Continue to upload files."
       end  
 
-      puts self.sta_mail    
-      Lead.where(email: sta_mail).each do |lead|  # for each lead that has this email       
+      puts self.cpy_contact_email    
+      Lead.where(email: self.cpy_contact_email).each do |lead|  # for each lead that has this email       
       unless lead.attached_file.nil?  # check if the attached_file is NOT null
         puts "This model has blob"
         begin
