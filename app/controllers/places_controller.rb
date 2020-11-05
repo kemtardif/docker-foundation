@@ -22,10 +22,6 @@ class PlacesController < ApplicationController
   def edit
   end
 
-  def googlemaps
-    @datas = helpers.get_data
-  end
-
   # POST /places
   # POST /places.json
   def create
