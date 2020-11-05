@@ -1,4 +1,4 @@
-# ted = ["tonted",""]
+ted = ["tonted",""]
 # alex = ["postgres", "root"]
 # jorge = ["jorge", "postgres"]
 # jf = ["postgres", "postgres"]
@@ -11,8 +11,8 @@
 
 host_ = "localhost"
 dbname_ = "warehouse_development"
-user_ = "postgres"
-password_ = "admin"
+user_ = ted[0]
+password_ = ted[1]
 
 
 # make sure to connect the good user
