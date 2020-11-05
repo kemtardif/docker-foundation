@@ -88,15 +88,14 @@ var calculPrice = function () { // [OK]
 	// console.log("-------- calculPrice --------");
 	// console.log("priceElevator : ", priceElevator);
 	// console.log("numbersOfElevators : ", numbersOfElevators);
-	var price = priceElevator * numbersOfElevators;
+	// var price = priceElevator * numbersOfElevators;
 	// console.log(price);
-	var model = $("input[name='game']").attr("id");
-	if (model == "std") {
-		return (price * 1.1).toFixed(2);	
-	} else if (model == "pre") {
-		return (price * 1.13).toFixed(2);	
-	} else if (model == "exc")  {
-		return (price * 1.16).toFixed(2);	
+	if (model == "Standard") {
+		return (numbersOfElevators * 1.1 * 7565).toFixed(2);	
+	} else if (model == "Premium") {
+		return (numbersOfElevators * 1.13 * 12345).toFixed(2);	
+	} else if (model == "Excelium")  {
+		return (numbersOfElevators * 1.16 * 15400).toFixed(2);	
 	} else {
 		0;
 	};
@@ -119,13 +118,15 @@ $(document).ready(function() {
 	});
 	$("#form input").change(function(){ // Get inputs
 		// console.log("---------- Get inputs ----------");
-		calculElevators();
+		model = parseInt($("input[name='game']:checked").val()) // ligne a modifier
+		calculElevators(model);
 	});
 	$("input[name='game']").change(function(){ // Get model checked
 		// gamme = parseInt($("input[name='game']:checked").val());  << il va donc recuperer la game au lieu du prix ve qui va permetre d'importer la bonne valeur dans la db
+		
 		// faire une boucle pour if premium PriceElevator = 7565 elif .....
-		priceElevator = parseInt($("input[name='game']:checked").val()); // ligne a modifier
-		calculElevators();
+		model = parseInt($("input[name='game']:checked").val()) // ligne a modifier
+		calculElevators(model);
 	});
 });
 //Jorge - Clearing form after submit
