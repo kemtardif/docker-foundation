@@ -34,7 +34,7 @@ module TicketHelper
 		client = client_con()
 
 		subject = "Quote for #{params['company_name']}"
-		comment = "The company #{params['company_name']} has made an estimate for #{params['elevator_needed']} elevator(s) of the #{params['game']} game in a #{params['building_type']} building with #{params['floors_qty']} floors for a total amount of #{params['total_price']}.
+		comment = "The company #{params['company_name']} has made an estimate for #{params['elevator_needed']} elevator(s) of the #{params['game']} game in a #{params['building_type']} building with #{params['floors_qty']} floors for a total amount of #{number_to_currency(params['total_price'])}.
 		The contact email is #{params['email']}."
 
 		ticket_save(client, subject, comment)

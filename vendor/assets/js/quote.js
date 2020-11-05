@@ -85,7 +85,7 @@ var calculElevators = function () { // [new]
 	} 
 }
 var calculPrice = function () { // [OK]
-	// console.log("-------- calculPrice --------");
+	console.log("-------- calculPrice --------");
 	// console.log("priceElevator : ", priceElevator);
 	// console.log("numbersOfElevators : ", numbersOfElevators);
 	// var price = priceElevator * numbersOfElevators;
@@ -122,10 +122,9 @@ $(document).ready(function() {
 		calculElevators(model);
 	});
 	$("input[name='game']").change(function(){ // Get model checked
-		// gamme = parseInt($("input[name='game']:checked").val());  << il va donc recuperer la game au lieu du prix ve qui va permetre d'importer la bonne valeur dans la db
-		
-		// faire une boucle pour if premium PriceElevator = 7565 elif .....
-		model = parseInt($("input[name='game']:checked").val()) // ligne a modifier
+		console.log("-------- Model Changed --------");
+		model = $("input[name='game']:checked").val(); // ligne a modifier
+		console.log(model);
 		calculElevators(model);
 	});
 });
