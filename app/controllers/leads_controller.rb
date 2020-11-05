@@ -11,7 +11,7 @@ class LeadsController < ApplicationController
     puts lead_params   
     @lead.save!
 
-    helpers.ticket(lead_params)
+    helpers.ticket_lead(lead_params)
     SendGrid_compute()
   end
 
