@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
-	
+
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>	
 <%= javascript_include_tag 'application', media: 'all' %>
+<script>var plugin_path = '../assets/'</script>
 
 <script src="//maps.google.com/maps/api/js?key=<%= "#{ENV['GOOGLE_MAPS_API']}" %>"></script>  
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>  
@@ -13,9 +16,13 @@
       <div id="map" style='width: 800px; height: 400px;'></div>  
     </div>  
 
+    <%= @c = PlacesHelper %>
+    <%= puts @c.class %>
+
     <script type="text/javascript">  
     handler = Gmaps.build('Google');  
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){  
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){ 
+      console.log("kndalskdna"); 
       markers = handler.addMarkers(<%= @datas.to_json.html_safe%>);
       handler.bounds.extendWith(markers);  
       handler.fitMapToBounds();  

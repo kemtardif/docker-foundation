@@ -109,3 +109,5 @@ gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', bra
 gem 'slack-notifier'
 gem 'gmaps4rails'
 
+gem 'carrierwave', '~> 2.0'
+
