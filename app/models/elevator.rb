@@ -1,8 +1,9 @@
+
 class Elevator < ApplicationRecord
     belongs_to :column
 
-    ##after_update :call_tech
-    after_update :speak_for_me
+    after_update :call_tech
+    
 
     private
         def call_tech 
@@ -10,11 +11,6 @@ class Elevator < ApplicationRecord
                 message = "The Elevator with id '#{self.id}', in building with id '#{self.column.battery.building.id}' needs to be repaired by '#{self.column.battery.building.tect_contact_name}'. His phone number is '#{self.column.battery.building.tect_contact_phone}'"
                 TwilioTextMessenger.new(message).call
             end
-        end
-
-        def speak_for_me
-            message = "Hello World"
-            WatsonTextSpeech.new(message).speak
         end
     around_update :notify_system_if_name_is_changed
     

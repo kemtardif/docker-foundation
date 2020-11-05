@@ -86,7 +86,7 @@ gem 'bcrypt_pbkdf'
 gem 'pg'
 gem 'multiverse'
 
-# JORGE - Cancancan roles 
+# JORGE - Cancancan roles
 gem 'cancancan'
 gem 'rolify'
 
@@ -99,7 +99,7 @@ gem 'chartkick'
 gem 'groupdate', '~> 5.2', '>= 5.2.1'
 
 
-# Week 7 
+# Week 7
 gem 'sendgrid-ruby'
 gem 'zendesk_api'
 gem 'figaro'
