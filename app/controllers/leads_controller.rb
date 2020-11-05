@@ -8,7 +8,7 @@ class LeadsController < ApplicationController
   include SendGrid
   def create        
     @lead = Lead.new(lead_params)   
-    @lead.save!  
+    @lead.save!
     helpers.ticket(lead_params)
 
 
