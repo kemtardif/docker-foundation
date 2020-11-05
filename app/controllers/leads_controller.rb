@@ -51,5 +51,4 @@ class LeadsController < ApplicationController
                     :message,
                     :attached_file )   
   end
-
 end
