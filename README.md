@@ -109,14 +109,9 @@ gem 'figaro' #Simple, Heroku-friendly Rails app configuration using ENV and a si
 ### Explanations:
 Incorporating the code below to the existing `create` function at `leads_controller.rb` for call the API and use de gem `'sendgrid-ruby'`, it will get the params from the contact us form and get the dynamic template from sendgrid in order to send the email.
 ```ruby
-require 'sendgrid-ruby'
+  require 'sendgrid-ruby'
   include SendGrid
-  def create        
-    @lead = Lead.new(lead_params)   
-    @lead.save!  
-    helpers.ticket(lead_params)
-
-
+  def SendGrid_compute
     full_name = params[:full_name]
     email = params[:email]
     project_name = params[:project_name]
@@ -139,6 +134,72 @@ require 'sendgrid-ruby'
         puts e.message
     end 
   end
+  ```
+  
+## Dropbox
+
+### Requirements:
+
+The dropbox API will make possible to archive the Rocket Elevators attached files in the cloud.
+
+
+- The website's “Contact Us” form can receive files that will be stored at the database as a binary file.
+- When a contact becomes a customer it will trigger an
+archiving procedure following these steps:
+  1. Connect to the Rocket Elevators DropBox account
+  2. Create a directory in DropBox on behalf of the client if the client does not already
+exist
+  3. Extract the file stored in the binary field of the MySQL database
+  4. Copy this file to the client DropBox directory
+  5. If the document is successfully downloaded to Dropbox, the controller deletes the
+content of the binary field from the database to avoid duplication
+
+
+### Gems used:
+
+```ruby 
+gem 'dropbox_api' # https://github.com/Jesus/dropbox_api
+```
+
+### Explanations:
+Incorporating the code below at `customer.rb` file for call the API and use de gem `'sendgrid-ruby'`, creating the function `migrate_attachments_to_dropbox` and calling it with `after_update :migrate_attachments_to_dropbox` when a customer is created or updated.
+```ruby
+ after_update :migrate_attachments_to_dropbox  # This line calls the function below after create or update a customer
+
+
+  # Function to connect to the dropbox account, create a diretory for the client, export the binary files to dropbox client's directory, delete the binary file from MySQL database 
+    def migrate_attachments_to_dropbox
+      puts self.id
+      dropbox_client = DropboxApi::Client.new
+
+      begin           
+          dropbox_client.create_folder "/customer_id_" + self.id.to_s   # create a folder named (use the customer_id) if there is no folder for this customer yet
+      rescue DropboxApi::Errors::FolderConflictError => err
+        puts "Folder already exists in path, ignoring folder creation. Continue to upload files."
+      end  
+
+      puts self.sta_mail    
+      Lead.where(email: sta_mail).each do |lead|  # for each lead that has this email       
+      unless lead.attached_file.nil?  # check if the attached_file is NOT null
+        puts "This model has blob"
+        begin
+          dropbox_client.upload("/customer_id_" + self.id.to_s + "/attachment_" + lead.id.to_s, lead.attached_file)    # send file to user's folder at dropbox
+        rescue DropboxApi::Errors::FileConflictError => err
+          puts "File already exists in folder, ignoring file upload. Continue to delete file from database."
+        end  
+
+        lead.attached_file = nil;
+        lead.save!
+      end
+    end
+
+    # The puts below should not be printed if the blob was correctly deleted from the db after the file was sent to dropbox (see code above)
+    Lead.where(email: sta_mail).each do |lead|
+      unless lead.attached_file.nil?
+        puts "===================The BLOB was not deleted!======================"        
+      end
+    end  
+    end
   ```
 
 ## Developpers
