@@ -30,14 +30,7 @@ class Customer < ApplicationRecord
         lead.attached_file = nil;
         lead.save!
       end
-    end
-
-    # The puts below should not be printed if the blob was correctly deleted from the db after the file was sent to dropbox (see code above)
-    Lead.where(email: sta_mail).each do |lead|
-      unless lead.attached_file.nil?
-        puts "===================The BLOB was not deleted!======================"        
-      end
-    end  
-    end
+    end 
+  end
 
 end
