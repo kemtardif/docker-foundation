@@ -36,5 +36,3 @@
 //= require Chart.bundle
 
 //= require gmaps/google
-
-//= require toastr
