@@ -241,9 +241,9 @@ end
    ```
     
     
- ##########    𝓣𝓦𝓘𝓛𝓘𝓞 ################
+ ##    𝓣𝓦𝓘𝓛𝓘𝓞 
  
- ## 𝓡𝓔𝓠𝓤𝓘𝓡𝓔𝓜𝓔𝓝𝓣𝓢 :
+ ### 𝓡𝓔𝓠𝓤𝓘𝓡𝓔𝓜𝓔𝓝𝓣𝓢 :
  
 ```
  If the status of an Elevator in the database changes to "Intervention" status, the building's technical contact must be identified and an SMS must be sent to the telephone number associated with this contact.
