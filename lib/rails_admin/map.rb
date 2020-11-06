@@ -1,3 +1,5 @@
+require 'open_weather'
+
 module RailsAdmin
     module Config
       module Actions
@@ -29,10 +31,19 @@ module RailsAdmin
 
                   data[:lat] = get_coordinates.first.coordinates[0]
                   data[:lng] = get_coordinates.first.coordinates[1]
+
                 end
+
                 
                 $amount_columns = 0
                 $amount_elevators = 0
+
+                options = { units: "metric", APPID: ENV["WEATHER_APIKEY"] }
+                weather = OpenWeather::Current.geocode(data[:lat], data[:lng] , options)
+
+                temp = weather.dig("main", "temp")
+                feels_like = weather.dig("main", "feels_like")
+
 
                 comment = "<h4><FONT color='#920001'>#{building.customer.company_name}</FONT></h4>"	
                 comment += "<h6><FONT color='#0B64A0'>#{address}</FONT></h6>"		
@@ -47,6 +58,8 @@ module RailsAdmin
                 comment += "<br><b>Number of Columns:</b> #{$amount_columns}"   
                 comment += "<br><b>Number of Elevators:</b> #{$amount_elevators}"   
                 comment += "<br><b>Technical contact:</b> #{building.tect_contact_name}"
+                #comment += "<br><b>Current weather:</b> #{temp}°C, feels like #{feels_like}°C"
+
                 
                 data[:infowindow] = comment
                 @datas.append(data)
