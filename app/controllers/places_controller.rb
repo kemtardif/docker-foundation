@@ -28,7 +28,7 @@ class PlacesController < ApplicationController
     @place = Place.new(place_params)
 
     respond_to do |format|
-      if @place.save
+      if verify_recaptcha(model: @place) && @place.save
         format.html { redirect_to @place, notice: 'Place was successfully created.' }
         format.json { render :show, status: :created, location: @place }
       else

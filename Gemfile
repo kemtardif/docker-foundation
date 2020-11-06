@@ -110,5 +110,5 @@ gem 'slack-notifier'
 gem 'dropbox_api'
 gem 'gmaps4rails'
 
-gem 'carrierwave', '~> 2.0'
-
+gem "recaptcha", require: "recaptcha/rails"
+gem 'toastr-rails'
