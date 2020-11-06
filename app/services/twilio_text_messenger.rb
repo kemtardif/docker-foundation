@@ -9,7 +9,7 @@ class TwilioTextMessenger
       client = Twilio::REST::Client.new
       client.messages.create({
         from: Figaro.env.twilio_phone_number,
-        to: '+14388633515',
+        to: '+15819831152',   
         body: message
       })
     end

@@ -109,6 +109,5 @@ gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', bra
 gem 'slack-notifier'
 gem 'dropbox_api'
 gem 'gmaps4rails'
-
-gem 'carrierwave', '~> 2.0'
-
+gem "recaptcha", require: "recaptcha/rails"
+gem 'open-weather'

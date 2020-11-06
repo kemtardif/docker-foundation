@@ -9,13 +9,21 @@ class LeadsController < ApplicationController
   def create        
     @lead = Lead.new(lead_params)
     file_received = params[:attached_file]
-    
-    @lead.attached_file = file_received.read
-    @lead.name_attached_file = file_received.original_filename
-    @lead.save!
 
-    helpers.ticket_lead(lead_params)
-    SendGrid_compute()
+    if file_received
+      @lead.attached_file = file_received.read
+      @lead.name_attached_file = file_received.original_filename
+    end
+
+    if verify_recaptcha(model: @lead) && @lead.save
+      respond_to do |format|
+          # helpers.ticket_lead(lead_params)
+          # SendGrid_compute()
+          format.html { redirect_to '/home', notice: 'Message Sent!' }
+      end
+    else
+      # render :js => "alert('Hello Rails');"    
+    end
   end
 
   def SendGrid_compute
