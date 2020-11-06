@@ -1,13 +1,11 @@
 require Rails.root.join('lib', 'rails_admin', 'tools.rb')
 require Rails.root.join('lib', 'rails_admin', 'map.rb')
+require Rails.root.join('lib', 'rails_admin', 'graph.rb')
 
 RailsAdmin.config do |config|
   
   # JORGE - Link to data visualization
-  config.navigation_static_links = {
-  'Data Visualization' => '/charts',
-  'Diagram'            => '/diagram',
-  'Map'                => '/places',                
+  config.navigation_static_links = {             
 }
 
   ### Popular gems integration
@@ -47,6 +45,7 @@ RailsAdmin.config do |config|
     
     tools
     map
+    graph
     
     ## With an audit adapter, you can add:
     # history_index

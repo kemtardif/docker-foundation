@@ -11,6 +11,8 @@
  * It is generally better to create a new file per style scope.
  *= requirerequire_self
 
+ *= require toastr
+
  */
 
  @import "bootstrap.min";
@@ -21,4 +23,5 @@
  @import "header-1";
  @import "rgray";
  @import "tonTedStlyle";
+
  

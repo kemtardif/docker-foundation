@@ -5,10 +5,16 @@ class QuotesController < ApplicationController
     end
 
     def create        
-      @quote = Quote.new(quote_params)   
-      @quote.save!  
+      @quote = Quote.new(quote_params)
       
-      helpers.ticket_quote(quote_params)
+      if verify_recaptcha(model: @quote) && @quote.save
+        respond_to do |format|
+        helpers.ticket_quote(quote_params)
+        format.html { redirect_to '/home', notice: 'Message Sent!' }
+        end
+      else
+        # render :js => "alert('Hello Rails');"    
+      end
     end
 
     def quote_params        

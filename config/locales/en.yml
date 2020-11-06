@@ -36,10 +36,14 @@ en:
   admin:
     actions:
       tools:
-        menu: "Tools"
-        title: "Tools"
-        breadcrumb: "Tools"
+        menu: "Message"
+        title: "Message"
+        breadcrumb: "Message"
       map:
         menu: "Map"
         title: "Map"
         breadcrumb: "Map"
+      graph:
+        menu: "Graph"
+        title: "Graph"
+        breadcrumb: "Graph"

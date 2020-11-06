@@ -111,6 +111,3 @@ gem 'dropbox_api'
 gem 'gmaps4rails'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'open-weather'
-
-gem 'carrierwave', '~> 2.0'
-
