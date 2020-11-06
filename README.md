@@ -196,6 +196,40 @@ https://www.dropbox.com/home/Aplicativos/RocketElevatorLeadsAttachments
       end
     end
   ```
+  
+## Slack API
+### Requirements
+
+    when a controller changes the status of an elevator, this status is reflected in the information system and persists in the operational database. 
+    When these status changes occur, a message is sent to the slack “elevator_operations” channel to leave a written record.
+    
+    
+## Gems used
+   ```ruby
+   gem 'slack-notifier'
+   ```
+   
+### Explanations:
+   
+   incorporating the code below in the elevator model will send a message in this format "The Elevator [Elevator’s ID] with Serial Number [Serial Number] changed status from 	 [Old Status] to [New Status]" to the "elevator_operations" slack channel when an elevator status is changed. Here's the code in the model:
+   
+   ```ruby
+   	 around_update :notify_system_if_name_is_changed
+    
+    private
+
+    def notify_system_if_name_is_changed
+            notify = self.status_changed? 
+            puts ENV["SLACK_API"]
+            if notify
+                notifier = Slack::Notifier.new ENV["SLACK_API"] 
+                notifier.ping "The Elevator with id '#{self.id}' With serial number '#{self.serial_number}' change status from '#{self.status_was}' to '#{self.status}'"
+            end
+            yield
+            
+        
+    end
+    ```
 
 ## Developpers
 - Cindy Okino (Team Leader)
