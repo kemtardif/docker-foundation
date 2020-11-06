@@ -239,6 +239,58 @@ end
         
     end
     ```
+    
+    
+ ##########    𝓣𝓦𝓘𝓛𝓘𝓞 ################
+ 
+ ## 𝓡𝓔𝓠𝓤𝓘𝓡𝓔𝓜𝓔𝓝𝓣𝓢 :
+ 
+ ```
+ If the status of an Elevator in the database changes to "Intervention" status, the building's technical contact must be identified and an SMS must be sent to the telephone number associated with this contact.
+In this case, the designated contact must be the coach assigned to each team, and he must receive the alerts on his mobile phone.
+```
+
+### 𝓖𝓔𝓜 𝓤𝓢𝓔𝓓 : 
+
+```
+gem 'twilio-ruby'
+```
+
+### 𝓔𝓧𝓟𝓛𝓐𝓝𝓐𝓣𝓘𝓞𝓝𝓢 :
+
+The speak method in the Twilio model make a call from a Twilio-generated number to a given number with a specified message : 
+
+```ruby
+def call
+      client = Twilio::REST::Client.new
+      client.messages.create({
+        from: Figaro.env.twilio_phone_number,
+        to: '+14388633515',
+        body: message
+      })
+    end
+```
+
+The after_update helper in the elevator controller calls the call_tech method, which ensure that if the updated status is "Intervention" (or "intervention"), a new instance of 
+the Twilio model is created, on which the call method is...called, with the appropriate message:
+
+```ruby
+    after_update :call_tech
+    
+
+    private
+        def call_tech 
+            if self.status == "Intervention" or self.status == "intervention" then 
+                message = "The Elevator with id '#{self.id}', in building with id '#{self.column.battery.building.id}' needs to be repaired by '#{self.column.battery.building.tect_contact_name}'. His phone number is '#{self.column.battery.building.tect_contact_phone}'"
+                TwilioTextMessenger.new(message).call
+            end
+        end
+```
+
+
+
+ 
+ 
 
 ## Developpers
 - Cindy Okino (Team Leader)
