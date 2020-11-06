@@ -162,16 +162,11 @@ gem 'dropbox_api' # https://github.com/Jesus/dropbox_api
 ```
 
 ### Explanations:
-Incorporating the code below at `customer.rb` file for call the API and use de gem `'sendgrid-ruby'`, creating the function `migrate_attachments_to_dropbox` and calling it with `after_update :migrate_attachments_to_dropbox` when a customer is created or updated.
+Incorporating the code below at `customer.rb` file for call the API and use de gem `'dropbox_api'`, creating the function `migrate_attachments_to_dropbox` and calling it with `after_create :migrate_attachments_to_dropbox` and `after_update :migrate_attachments_to_dropbox` when a customer is created or updated.
 
 Link to the dropbox folder: 
-https://www.dropbox.com/home/Aplicativos/RocketElevatorLeadsAttachments
+https://www.dropbox.com/sh/vmjyuwllrcsz79s/AAC2b_FrGy4Sm93C5C16DnG1a?dl=0
 ```ruby
-    class Customer < ApplicationRecord
-    has_many :buildings
-    belongs_to :user
-    belongs_to :address
-
     after_create :migrate_attachments_to_dropbox
     after_update :migrate_attachments_to_dropbox  # This line calls the function below after create or update a customer
 
@@ -202,8 +197,6 @@ https://www.dropbox.com/home/Aplicativos/RocketElevatorLeadsAttachments
         end
     end 
   end
-
-end
   ```
   
 ## Slack API
