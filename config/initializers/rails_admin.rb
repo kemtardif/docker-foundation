@@ -1,6 +1,6 @@
 require Rails.root.join('lib', 'rails_admin', 'tools.rb')
 require Rails.root.join('lib', 'rails_admin', 'map.rb')
-require Rails.root.join('lib', 'rails_admin', 'graph.rb')
+# require Rails.root.join('lib', 'rails_admin', 'graph.rb')
 
 RailsAdmin.config do |config|
   
@@ -45,7 +45,7 @@ RailsAdmin.config do |config|
     
     tools
     map
-    graph
+    # graph
     
     ## With an audit adapter, you can add:
     # history_index
