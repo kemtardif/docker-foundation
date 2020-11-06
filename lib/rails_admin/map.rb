@@ -58,7 +58,7 @@ module RailsAdmin
                 comment += "<br><b>Number of Columns:</b> #{$amount_columns}"   
                 comment += "<br><b>Number of Elevators:</b> #{$amount_elevators}"   
                 comment += "<br><b>Technical contact:</b> #{building.tect_contact_name}"
-                #comment += "<br><b>Current weather:</b> #{temp}°C, feels like #{feels_like}°C"
+                comment += "<br><b>Current weather:</b> #{temp}°C, feels like #{feels_like}°C"
 
                 
                 data[:infowindow] = comment
