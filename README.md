@@ -238,7 +238,141 @@ end
             
         
     end
-    ```
+   ```
+    
+    
+ ##    𝓣𝓦𝓘𝓛𝓘𝓞 
+ 
+ ### 𝓡𝓔𝓠𝓤𝓘𝓡𝓔𝓜𝓔𝓝𝓣𝓢 :
+ 
+```
+ If the status of an Elevator in the database changes to "Intervention" status, the building's technical contact must be identified and an SMS must be sent to the telephone number associated with this contact.
+In this case, the designated contact must be the coach assigned to each team, and he must receive the alerts on his mobile phone.
+```
+
+### 𝓖𝓔𝓜 𝓤𝓢𝓔𝓓 : 
+
+```
+gem 'twilio-ruby'
+```
+
+### 𝓔𝓧𝓟𝓛𝓐𝓝𝓐𝓣𝓘𝓞𝓝𝓢 :
+
+The speak method in the Twilio model make a call from a Twilio-generated number to a given number with a specified message : 
+
+```ruby
+def call
+      client = Twilio::REST::Client.new
+      client.messages.create({
+        from: Figaro.env.twilio_phone_number,
+        to: '+14388633515',
+        body: message
+      })
+    end
+```
+
+The after_update helper in the elevator controller calls the call_tech method, which ensure that if the updated status is "Intervention" (or "intervention"), a new instance of 
+the Twilio model is created, on which the call method is...called, with the appropriate message:
+
+```ruby
+    after_update :call_tech
+    
+
+    private
+        def call_tech 
+            if self.status == "Intervention" or self.status == "intervention" then 
+                message = "The Elevator with id '#{self.id}', in building with id '#{self.column.battery.building.id}' needs to be repaired by '#{self.column.battery.building.tect_contact_name}'. His phone number is '#{self.column.battery.building.tect_contact_phone}'"
+                TwilioTextMessenger.new(message).call
+            end
+        end
+```
+
+## 𝓦𝓐𝓣𝓢𝓞𝓝 𝓣𝓔𝓧𝓣-𝓣𝓞-𝓢𝓟𝓔𝓔𝓒𝓗
+
+### 𝓡𝓔𝓠𝓤𝓘𝓡𝓔𝓜𝓔𝓝𝓣𝓢 :
+
+```
+Rocket Elevators wants to add text-to-speech functionality to their Home Dashboard (/ admin). We must have the option to start the every time the Admin Dashboard page appears.
+The type of information that speech synthesis allows are the following:
+Greetings to the logged users
+There are currently XXX elevators deployed in the XXX buildings of your XXX customers
+Currently, XXX elevators are not in Running Status and are being serviced
+You currently have XXX quotes awaiting processing
+You currently have XXX leads in your contact requests
+XXX Batteries are deployed across XXX cities
+To provide the type of voice summary described, it is necessary to execute the appropriate queries in the database to collect the relevant data. Then form sentences in English and combine them with the data collected.
+
+```
+
+### 𝓖𝓔𝓜 𝓤𝓢𝓔𝓓 : 
+
+```
+gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', branch: 'master'
+```
+### 𝓔𝓧𝓟𝓛𝓐𝓝𝓐𝓣𝓘𝓞𝓝𝓢 :
+
+First, we make an xmlHTTP get request to the watson controller when the Tools tab is loaded:
+
+```javascript
+ $(document).ready(function(){
+  			let xmlHttpRequest = new XMLHttpRequest(); 
+             xmlHttpRequest.open("GET", "/watson"+ "?cb=" + new Date().getTime(), true);
+             xmlHttpRequest.responseType = "blob"; 
+             xmlHttpRequest.setRequestHeader("Accept", "application/json");
+             xmlHttpRequest.setRequestHeader("Content-Type", "application/json"); 
+             xmlHttpRequest.setRequestHeader("Cache-Control", "no-cache");
+             xmlHttpRequest.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                 var url = window.URL.createObjectURL(this.response);
+                 var audio = $('#audio-player') || new Audio();
+                 audio.src = url;
+
+               }
+             };
+  
+             xmlHttpRequest.send();   
+  });
+```
+The end point will be the method call, which make make a call to the API with the approriate message. We then save the response as an mp3 file in the lib folder :
+
+```ruby
+ def speak
+  
+        authenticator = Authenticators::IamAuthenticator.new(
+            apikey: ENV["TEXT_TO_SPEECH_IAM_APIKEY"]
+        )
+        text_to_speech = TextToSpeechV1.new(
+            authenticator: authenticator
+        )
+        text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
+            
+        message = "Greeting user #{current_user.id}. There is #{Elevator::count} elevators in #{Building::count} buildings of your 
+                    #{Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
+                    Running Status and are being serviced. You currently have #{Quote::count} quotes awaiting processing.
+                    You currently have #{Lead::count} leads in your contact requests. 
+                    #{Battery::count} Batteries are deployed across 
+                    #{Address.where(id: Building.select(:address_id).distinct).select(:city).distinct.count} cities"
+
+        response = text_to_speech.synthesize(
+            text: message,
+            accept: "audio/mp3",
+            voice: "en-GB_KateV3Voice"
+        ).result
+
+        File.open("#{Rails.root}/public/outputs.mp3", "wb") do |audio_file|
+                        audio_file.write(response)
+        end    
+    end
+```
+
+The source of the audio player will be this file, which is why we make the http request before the page loads. Note since we have to make to calls, one to the back-end and
+one to the API, if there's any change in the values related to the message, the updated audio will take some time to load. For example, if you delete a customer,
+it should take a minute before the message update with the new value. 
+
+
+
+ 
+ 
 
 ## Developpers
 - Cindy Okino (Team Leader)
