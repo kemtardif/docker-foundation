@@ -110,8 +110,13 @@ gem 'gmaps4rails'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'open-weather'
 
+<<<<<<< HEAD
 #Secure API Keys
 gem 'figaro'
 
 #Get coordinates of adress
 gem 'geocoder'
+=======
+gem 'carrierwave', '~> 2.0'
+
+>>>>>>> c31277d59d579d5a219faa0c6bb4cda978a89a5a
