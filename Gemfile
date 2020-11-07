@@ -93,17 +93,15 @@ gem 'rolify'
 # ALEX - faker
 gem 'faker'
 
-#JORGE - Data visualization Extra Mille
 gem 'chartkick'
-
 gem 'groupdate', '~> 5.2', '>= 5.2.1'
 
 
 # Week 7
+
+#API Gems
 gem 'sendgrid-ruby'
 gem 'zendesk_api'
-gem 'figaro'
-gem 'geocoder'
 gem 'twilio-ruby'
 gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', branch: 'master'
 gem 'slack-notifier'
@@ -111,3 +109,9 @@ gem 'dropbox_api'
 gem 'gmaps4rails'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'open-weather'
+
+#Secure API Keys
+gem 'figaro'
+
+#Get coordinates of adress
+gem 'geocoder'
