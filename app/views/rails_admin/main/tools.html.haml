@@ -1,7 +1,45 @@
-%audio#audio-player.audios{controls: "", preload: "none"}
-  %source{src: "/outputs.mp3", type: "audio/mp3"}
+%div
+  %audio#audio-player.audios{controls: "", preload: "none"}
+    %source{src: "/outputs.mp3", type: "audio/mp3"}
+%br/ 
+
+%div
+  %button#stapi.btn.btn-primary Random Star Wars Quotes
+
+
 
 :javascript
+
+  $("#stapi").on("click", function(){
+
+    $.ajax({
+      url: "http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote",
+      type: "GET",
+      success: function(data) {
+    
+        let xmlHttpRequest = new XMLHttpRequest(); 
+             xmlHttpRequest.open("POST", "/watson/st", true);
+             xmlHttpRequest.responseType = "blob"; 
+             xmlHttpRequest.setRequestHeader("Accept", "application/json");
+             xmlHttpRequest.setRequestHeader("Content-Type", "application/json"); 
+             xmlHttpRequest.setRequestHeader("Cache-Control", "no-cache");
+             xmlHttpRequest.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                 console.log("FINISHED");
+                 var url = window.URL.createObjectURL(this.response);
+                 var audio = new Audio();
+                 audio.src = url;
+                 audio.play();
+
+               }
+             };
+  
+             xmlHttpRequest.send(JSON.stringify(data)); 
+
+      }
+    });
+            
+    });
   $(document).ready(function(){
 
  

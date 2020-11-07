@@ -12,6 +12,7 @@ class Elevator < ApplicationRecord
                 TwilioTextMessenger.new(message).call
             end
         end
+        
     around_update :notify_system_if_name_is_changed
     
     private
