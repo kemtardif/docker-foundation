@@ -17,8 +17,8 @@ class LeadsController < ApplicationController
 
     if verify_recaptcha(model: @lead) && @lead.save
       respond_to do |format|
-          # helpers.ticket_lead(lead_params)
-          # SendGrid_compute()
+          helpers.ticket_lead(lead_params)
+          SendGrid_compute()
           format.html { redirect_to '/home', notice: 'Message Sent!' }
       end
     else
