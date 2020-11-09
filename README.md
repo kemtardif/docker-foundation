@@ -440,12 +440,39 @@ $("#stapi").on("click", function(){
     });
             
     });
-    ```
+```
 
+## Rake Task
 
+file lib/tasks/importdata.rake
 
- 
- 
+## Run Task individually :
+```rb
+rake dwh:fact_contact
+rake dwh:fact_elevator
+rake dwh:fact_quote
+rake dwh:dimcustomers
+rake dwh:fact_intervention
+```
+
+## Run Tasks together :
+```rb
+rake dwh:doall
+```
+
+#### Task doall:
+```rb
+desc "do all task"
+task doall: :environment do
+    conn = PG.connect( host: host_, dbname: dbname_, user: user_, password: password_ )
+    Rake::Task["dwh:fact_contact"].invoke 
+    Rake::Task["dwh:fact_elevator"].invoke 
+    Rake::Task["dwh:fact_quote"].invoke 
+    Rake::Task["dwh:dimcustomers"].invoke 
+    Rake::Task["fact_intervention"].invoke 
+end
+```
+
 
 ## Developpers
 - Cindy Okino (Team Leader)

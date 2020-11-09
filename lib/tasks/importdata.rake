@@ -178,5 +178,6 @@ namespace :dwh do
         Rake::Task["dwh:fact_elevator"].invoke 
         Rake::Task["dwh:fact_quote"].invoke 
         Rake::Task["dwh:dimcustomers"].invoke 
+        Rake::Task["fact_intervention"].invoke 
     end
 end
