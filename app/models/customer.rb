@@ -1,7 +1,10 @@
 class Customer < ApplicationRecord
     has_many :buildings
+    has_one :lead
     belongs_to :user
     belongs_to :address
+
+    has_one :lead
 
     after_create :migrate_attachments_to_dropbox
     after_update :migrate_attachments_to_dropbox  # This line calls the function below after create or update a customer

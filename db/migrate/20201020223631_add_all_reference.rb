@@ -6,6 +6,7 @@ class AddAllReference < ActiveRecord::Migration[5.2]
     add_reference :columns,     :battery, foreign_key: true
     add_reference :batteries,   :building, foreign_key: true
     add_reference :buildings,   :customer, foreign_key: true
+    add_reference :leads,       :customer, foreign_key: true
 
     add_reference :customers,   :address, foreign_key: true
     add_reference :buildings,   :address, foreign_key: true

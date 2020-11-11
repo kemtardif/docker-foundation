@@ -270,6 +270,8 @@ require 'faker'
     lead_.attached_file = Faker::LoremPixel.image(size: "50x60")
     lead_.create_at = Faker::Date.between(from: '2017-09-30', to: '2020-09-30')
     lead_.save!
+    
+    return lead_
   end
 
   def quote_create
@@ -308,6 +310,9 @@ def faker_data
     1.upto(10) do |cu|
         puts "Customer #{cu} creates\t"
         customer_ = customer_create()
+
+        lead_ = lead_create(department)
+        customer_.lead = lead_
         
         1.upto(rand(1..3)) do |bu|
             building_ = building_create(bu)
