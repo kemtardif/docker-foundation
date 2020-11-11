@@ -6,15 +6,15 @@ ted = ["tonted",""]
 # jf = ["postgres", "postgres"]
 
 
-# host_ = "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com"
-# dbname_ = "cindy_okino_warehouse"
-# user_ = "codeboxx"
-# password_ = "Codeboxx1!"
+host_ = "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com"
+dbname_ = "cindy_okino_warehouse"
+user_ = "codeboxx"
+password_ = "Codeboxx1!"
 
-host_ = "localhost"
-dbname_ = "warehouse_development"
-user_ = ted[0]
-password_ = ted[1]
+# host_ = "localhost"
+# dbname_ = "warehouse_development"
+# user_ = ted[0]
+# password_ = ted[1]
 
 
 # make sure to connect the good user
