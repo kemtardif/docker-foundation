@@ -138,7 +138,7 @@ require 'faker'
     elevator_.serial_number = Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)
     elevator_.model = models[rand(0..2)]
     elevator_.type_building = type_building
-    elevator_.status = status_[rand(0..2)]
+    elevator_.status = status_[rand(0...status_.length)]
     elevator_.date_commissioning = battery_date_comissioning
     elevator_.date_last_inspection = Faker::Date.between(from: elevator_.date_commissioning, to: '2020-09-30')
     elevator_.cert_ope = Faker::Alphanumeric.alphanumeric(number: 12, min_alpha: 5, min_numeric: 3)
@@ -152,7 +152,7 @@ require 'faker'
       column_ = Column.new
       column_.type_building = type_building
       column_.amount_floors_served = rand(5..100)
-      column_.status = status_[rand(0..2)]
+      column_.status = status_[rand(0...status_.length)]
       column_.information = Faker::GreekPhilosophers.quote
       column_.notes = Faker::Lorem.paragraph
       return column_
@@ -163,12 +163,13 @@ require 'faker'
       # pp battery_.errors
       battery_.type_building = type_building[rand(0..3)]
       puts "    |     |- Batterie #{ba} #{battery_.type_building} creates\t"
-      battery_.status = status_[rand(0..2)]
+      battery_.status = status_[rand(0...status_.length)]
       battery_.date_commissioning = Faker::Date.between(from: cust_date_create, to: '2020-09-30')
       battery_.date_last_inspection = Faker::Date.between(from: battery_.date_commissioning, to: '2020-09-30')
       battery_.cert_ope = Faker::Alphanumeric.alphanumeric(number: 12, min_alpha: 5, min_numeric: 3)
       battery_.information = Faker::Ancient.hero
       battery_.notes = Faker::Lorem.paragraph
+      battery_.employee_id = rand(1..7)
       return battery_
   end
 
@@ -302,7 +303,7 @@ department = ["Residential", "Commercial", "Corporate", "Hybrid"]
 
 def faker_data
   type_building = ["Residential", "Corporate", "Commercial", "Hybrid"]
-  status_ = ["Offline", "Online", "To_fix"]
+  status_ = ["Offline", "Online", "To_fix", "Intervention"]
   models = ["standard", "premium", "excelium"]
   type_addresses = ["Billing", "Shipping", "Business", "Home"]
   department = ["Residential", "Commercial", "Corporate", "Hybrid"]

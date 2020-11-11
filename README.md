@@ -2,6 +2,8 @@
 
 Implementation of seven APIs on Rocket Elevator's RAILS application
 
+https://cindyokino.com/
+
 ## Zendesk
 
 ### Requirements:
@@ -369,9 +371,108 @@ one to the API, if there's any change in the values related to the message, the 
 it should take a minute before the message update with the new value. 
 
 
+## ＷΞΛＴＨΞＲ░ΛＰＩ
 
- 
- 
+### 𝓡𝓮𝓺𝓾𝓲𝓻𝓮𝓶𝓮𝓷𝓽𝓼
+
+Have the weather be dispalyed along the building informations on the map
+
+### Gₑₘ ᵤₛₑd
+
+```
+gem 'open-weather'
+```
+
+### SNOI⊥∀N∀˥ԀXƎ
+
+When creating the map markers in map.rb, the following two lines fetch the temperature in JSON-format, from which the current temp and "Feels like" temp are extracted :
+
+```ruby
+ options = { units: "metric", APPID: ENV["WEATHER_APIKEY"] }
+ weather = OpenWeather::Current.geocode(data[:lat], data[:lng] , options)
+```
+
+
+## (っ◔◡◔)っ ♥ STAR WARS QUOTES ♥
+
+### 𝓡𝓮𝓺𝓾𝓲𝓻𝓮𝓶𝓮𝓷𝓽𝓼
+
+We want to hear some stuff about Star Wars! So we made a button saying random Star Wars Quotes whoo!
+
+
+### Gₑₘ ᵤₛₑd
+none
+
+### SNOI⊥∀N∀˥ԀXƎ
+
+On the Dashboard, below the audio player, a button make a get ajax request to the swquote API url, which gives us back a JSON-format file. In the succes part, the response is
+used to make an xmlhttp post request to the watson controller, which allow to render the text to speech. It then plays the resulting audio. Note that since there's two
+call being made, you have to wait ~20 seconds before you get a second quote.
+
+```javascript
+$("#stapi").on("click", function(){
+
+    $.ajax({
+      url: "http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote",
+      type: "GET",
+      success: function(data) {
+    
+        let xmlHttpRequest = new XMLHttpRequest(); 
+             xmlHttpRequest.open("POST", "/watson/st", true);
+             xmlHttpRequest.responseType = "blob"; 
+             xmlHttpRequest.setRequestHeader("Accept", "application/json");
+             xmlHttpRequest.setRequestHeader("Content-Type", "application/json"); 
+             xmlHttpRequest.setRequestHeader("Cache-Control", "no-cache");
+             xmlHttpRequest.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                 console.log("FINISHED");
+                 var url = window.URL.createObjectURL(this.response);
+                 var audio = new Audio();
+                 audio.src = url;
+                 audio.play();
+
+               }
+             };
+  
+             xmlHttpRequest.send(JSON.stringify(data)); 
+
+      }
+    });
+            
+    });
+```
+
+## Rake Task
+
+file lib/tasks/importdata.rake
+
+## Run Task individually :
+```rb
+rake dwh:fact_contact
+rake dwh:fact_elevator
+rake dwh:fact_quote
+rake dwh:dimcustomers
+rake dwh:fact_intervention
+```
+
+## Run Tasks together :
+```rb
+rake dwh:doall
+```
+
+#### Task doall:
+```rb
+desc "do all task"
+task doall: :environment do
+    conn = PG.connect( host: host_, dbname: dbname_, user: user_, password: password_ )
+    Rake::Task["dwh:fact_contact"].invoke 
+    Rake::Task["dwh:fact_elevator"].invoke 
+    Rake::Task["dwh:fact_quote"].invoke 
+    Rake::Task["dwh:dimcustomers"].invoke 
+    Rake::Task["fact_intervention"].invoke 
+end
+```
+
 
 ## Developpers
 - Cindy Okino (Team Leader)
