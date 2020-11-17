@@ -140,16 +140,32 @@
         }
 
         $("#customer_id").change(function(){
+
+			$("#building").hide();
+			$("#battery").hide();
+			$("#column").hide();
+			$("#elevator").hide();
             ajaxCall("customer", "building")
             });
 
         $("#building_id").change(function(){
+
+			$("#battery").hide();
+			$("#column").hide();
+			$("#elevator").hide();
             ajaxCall("building", "battery")
-            });
+			});
+			
         $("#battery_id").change(function(){
+
+			$("#column").hide();
+			$("#elevator").hide();
             ajaxCall("battery", "column")
-            });
+			});
+			
         $("#column_id").change(function(){
+
+			$("#elevator").hide();
             ajaxCall("column", "elevator")
             });
 
