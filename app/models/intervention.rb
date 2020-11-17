@@ -1,4 +1,5 @@
 class Intervention < ApplicationRecord
+    belongs_to :author, class_name: "User"
     belongs_to :customer
     belongs_to :building
     belongs_to :battery, :optional => true

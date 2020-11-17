@@ -14,7 +14,7 @@ class InterventionsController < ApplicationController
                 :employee_id, 
                 :report))
 
-        @intervention.author = current_user.id
+        @intervention.author_id = current_user.id
         @intervention.save
 
         if @intervention.save
