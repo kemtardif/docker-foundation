@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :places
+
+  resources :interventions, only: [ :new, :create]
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -14,6 +17,12 @@ Rails.application.routes.draw do
   get '/404'          => 'pages#p404'
   get '/charts'       => 'pages#charts'
   get '/diagram'      => 'pages#diagram'
+
+ 
+  post "/interventions/new"         => "interventions#create"
+  get '/search'               => "interventions#search"
+
+
 
 
   post '/leads'       => 'leads#create'

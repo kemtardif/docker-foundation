@@ -27,6 +27,14 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+###CONSOLIDATION
+
+gem "bootstrap_form", "~> 4.0"
+gem 'toastr-rails'
+
+
+#######
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -109,6 +117,9 @@ gem 'dropbox_api'
 gem 'gmaps4rails'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'open-weather'
+
+
+
 
 #Secure API Keys
 gem 'figaro'

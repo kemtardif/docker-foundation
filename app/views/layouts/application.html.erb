@@ -76,16 +76,26 @@
 														</a>
 													</li>
 													<li><!-- SGN IN -->
-													<% if current_user %>
-                                                        <%= link_to "LOGOUT", destroy_user_session_path, method: :delete %>
-                                                    <% else %>
-                                                        <%= link_to "LOGIN", "/login" %> <!-- new_user_session_path-->
-                                                    <% end %>
-													</li>
-													<li><!-- AMDIN -->
-													<% if current_user %>
-                                                        <%= link_to "ADMIN", "/admin" %>
-                                                    <% end %>
+													
+															<a class="dropdown-toggle" href="/#services">
+																	ADMIN
+															</a>
+															<ul class="dropdown-menu">
+															<% if current_user %>
+															<li>
+															<%= link_to "ADMIN", "/admin" %>
+															</li>																														<li>
+															<%= link_to "INTERVENTIONS", new_intervention_path %>
+															</li>
+															<li>
+															<%= link_to "LOGOUT", destroy_user_session_path, method: :delete %>
+															</li>
+															<% else %>
+															<li>
+																	<%= link_to "LOGIN", "/login" %>
+															</li>
+															<% end %>
+															</ul>
 													</li>
 											</ul>
 										</nav>

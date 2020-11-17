@@ -31,6 +31,8 @@
 //= require quote
 //= require scripts
 
+//=require toastr
+
 //JORGE - For data visualization - Extra Mille
 //= require chartkick
 //= require Chart.bundle

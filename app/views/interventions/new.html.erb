@@ -1,0 +1,155 @@
+<%= image_tag("repairs.jpg", :width => "100%", :class => 'img-fluid') %>
+
+
+
+			<section id="intervention">
+				<div class="container">
+
+					<header class="text-center mb-60">
+						<h2>Intervention Request Form</h2>
+						<p class="lead font-lato">Make a new intervention</p>
+						<hr />
+					</header>
+
+
+					<div class="row">
+
+            
+
+							
+
+							
+							<!-- Alert Success -->
+							<div id="alert_success" class="alert alert-success mb-30">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<strong>Thank You!</strong> Your message successfully sent!
+							</div><!-- /Alert Success -->
+
+
+							<!-- Alert Failed -->
+							<div id="alert_failed" class="alert alert-danger mb-30">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<strong>[SMTP] Error!</strong> Internal server error!
+							</div><!-- /Alert Failed -->
+
+
+							<!-- Alert Mandatory -->
+							<div id="alert_mandatory" class="alert alert-danger mb-30">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<strong>Sorry!</strong> You need to complete all mandatory (*) fields!
+							</div><!-- /Alert Mandatory -->
+
+
+                            
+						
+						<div class="col-md-8 col-sm-8">
+							<%= bootstrap_form_with(model: @intervention, local: true) do |f| %>
+							<%= f.alert_message "<strong>Sorry!</strong> You need to complete all mandatory (*) fields!" %>
+					
+
+									<div class="row">
+											<div class="col-md-4", id="customer">
+                                            <%= f.select(:customerId, options_from_collection_for_select(Customer.all, :id, :company_name), {prompt: "---Select---", label: "Customer *"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0', required: true }) %>                                
+											</div>
+											<div class="col-md-4", id="building">
+                                             <%= f.select(:buildingId, options_from_collection_for_select(Building.all, :id, :id), {prompt: "---Select---", label: "Building *"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0', required: true}) %>
+											</div>
+											<div class="col-md-4", id="battery">
+                                            <%= f.select(:batteryId, options_from_collection_for_select(Battery.all, :id, :id), {prompt: "---Select---", label: "Battery"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
+											</div>
+											<div class="col-md-4", id="column">
+                                            <%= f.select(:columnId, options_from_collection_for_select(Column.all, :id, :id), {prompt: "---Select---", label: "Column"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %> 
+											</div>
+									</div>
+									<div class="row">
+											<div class="col-md-8", id= "elevator">
+                                            <%= f.select(:elevatorId, options_from_collection_for_select(Elevator.all, :id, :id), {prompt: "---Select---", label: "Elevator"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
+											</div>
+											<div class="col-md-4">
+                                                <%= f.select(:employeeId, options_from_collection_for_select(Employee.all, :id, :last_name), {prompt: "---Select---", label: "Employee"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
+											</div>
+									</div>
+									<div class="row">
+											<div class="col-md-12">
+                                            <%= f.text_area :reportrake, label: "Description *", control_class: "form-control", :maxlength => "10000", :rows => "8", required: true %> 
+											</div>
+									</div>
+
+
+								</fieldset>
+
+								<div class="row">
+									<div class="col-md-12">
+                                    <%= f.submit "SEND INTERVENTION", class: "btn btn-outline-danger" %>
+									</div>
+								</div>
+							<% end %>
+
+						</div>
+						
+
+					</div>
+
+				</div>
+			</section>
+
+
+<script>
+
+    $(document).ready(function() {
+
+        $("#building").hide();
+        $("#battery").hide();
+        $("#column").hide();
+        $("#elevator").hide();
+
+        function ajaxCall(item, element){
+
+            var itemId = $("#" + item + "Id").val();
+
+
+            if (itemId != "" && itemId != "---Select---" ){
+                
+            console.log("#######");
+            
+                $.ajax({
+                    url: "/search",
+                    method: "GET",  
+                    dataType: "json",
+                    data: {itemId: itemId, type: element},
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Error: ' + status + error);
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        var elements = response["elements"];
+                        $("select#" + element +"Id option").remove();
+
+                        $("#" + element +"Id").append('<option value = "">---Select---</option>');
+                        for(var i = 0; i < elements.length; i++){
+                            $("#" + element +"Id").append('<option value="' + elements[i]["id"] + '">' + elements[i]["id"] + '</option>');
+                        }
+                    }
+
+                });
+                $("#" + element).show();
+            }
+        }
+
+        $("#customerId").change(function(){
+            ajaxCall("customer", "building")
+            });
+
+        $("#buildingId").change(function(){
+            ajaxCall("building", "battery")
+            });
+        $("#batteryId").change(function(){
+            ajaxCall("battery", "column")
+            });
+        $("#columnId").change(function(){
+            ajaxCall("column", "elevator")
+            });
+
+    });
+
+</script>
