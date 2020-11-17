@@ -4,7 +4,23 @@ require 'faker'
 ###Intervention generator
 
 
+
+def create_intervention
+
+  random = rand(1..2)
+  startDate = Faker::Date.between(from: '2018-09-30', to: '2020-09-30')
+
+  int_ = Intervention.new 
+  int_.startDateIntervention = startDate
+  int_.report = Faker::ChuckNorris.fact
+  int_.endDateIntervention = Faker::Date.between(from: startDate, to: '2020-10-30')
+
+
+
+  return int_
+end
     
+
 
 # Real Addresses
   class AddressCsv
@@ -318,12 +334,18 @@ def faker_data
         puts "Customer #{cu} creates\t"
         customer_ = customer_create()
 
+        #inter_ = create_intervention()
+
+        #customer_.interventions << inter_
+
         lead_ = lead_create(department)
         customer_.lead = lead_
         
         1.upto(rand(1..3)) do |bu|
             building_ = building_create(bu)
             customer_.buildings << building_
+
+           # building_.interventions << inter_
 
             1.upto(rand(1..3)) do |ba|
               buildings_detail_ = building_details_create()
@@ -334,14 +356,20 @@ def faker_data
               battery_ = battery_create(customer_.date_create, type_building, ba, status_)
               building_.batteries << battery_
 
+             # battery_.interventions << inter_
+
               
               1.upto(rand(1..3)) do |co|
                   column_ = column_create(status_, battery_.type_building, co)
                   battery_.columns << column_  
 
+                # column_.interventions << inter_
+
                   1.upto(rand(1..3)) do |el|
                       elevator_ = elevator_create(models, status_, battery_.type_building, battery_.date_commissioning, el)
                       column_.elevators << elevator_
+
+                     # elevator_.interventions << inter_
                   end  
                   # column_.save!
                   puts "    |     |     |\n"     

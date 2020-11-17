@@ -110,8 +110,8 @@ ActiveRecord::Schema.define(version: 2020_11_16_170216) do
   end
 
   create_table "interventions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "startDateIntervention"
-    t.datetime "endDateIntervention"
+    t.date "startDateIntervention"
+    t.date "endDateIntervention"
     t.string "result", default: "Incomplete"
     t.string "report"
     t.string "status", default: "Pending"
@@ -210,6 +210,6 @@ ActiveRecord::Schema.define(version: 2020_11_16_170216) do
   add_foreign_key "interventions", "customers"
   add_foreign_key "interventions", "elevators"
   add_foreign_key "interventions", "employees"
-  add_foreign_key "interventions", "users", column: "author_id"
+  add_foreign_key "interventions", "employees", column: "author_id"
   add_foreign_key "leads", "customers"
 end
