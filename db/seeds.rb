@@ -7,18 +7,20 @@ require 'faker'
 
 def create_intervention
 
-  random = rand(1..2)
+  random = rand(1..3)
   random1 = rand(1..2)
   startDate = Faker::Date.between(from: '2018-09-30', to: '2020-09-30')
 
   int_ = Intervention.new 
-  int_.startDateIntervention = startDate
   int_.report = Faker::ChuckNorris.fact
 
   if random == 1
-    startDate = Faker::Date.between(from: '2018-09-30', to: '2020-09-30')
+    int_.startDateIntervention = startDate
+    int_.status = "InProgress"
     if random1 == 1
       int_.endDateIntervention = Faker::Date.between(from: startDate, to: '2020-10-30')
+      int_.status = "Repaired"
+      int_.result = "Complete"
     end
   end
 

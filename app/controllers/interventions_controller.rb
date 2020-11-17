@@ -1,8 +1,16 @@
 class InterventionsController < ApplicationController
     before_action :authenticate_user!
+    before_action :check_employee
 
     def new  
     end
+
+    def check_employee
+
+        return unless current_user.employee == nil
+        redirect_to root_path, alert: 'You are not allowed to access this part of the site'
+    end
+    
 
     def create     
         @intervention = Intervention.new(params
