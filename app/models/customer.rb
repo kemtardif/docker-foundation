@@ -3,6 +3,7 @@ class Customer < ApplicationRecord
     has_one :lead
     belongs_to :user
     belongs_to :address
+    has_many :interventions
 
     has_one :lead
 

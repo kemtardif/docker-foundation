@@ -5,8 +5,9 @@
 			<section id="intervention">
 				<div class="container">
 
-					<header class="text-center mb-60">
-						<h2>Intervention Request Form</h2>
+					<header class="text-center mb-60 ">
+						<h2>Intervention Request</h2>
+						
 						<p class="lead font-lato">Make a new intervention</p>
 						<hr />
 					</header>
@@ -49,29 +50,31 @@
 
 									<div class="row">
 											<div class="col-md-4", id="customer">
-                                            <%= f.select(:customerId, options_from_collection_for_select(Customer.all, :id, :company_name), {prompt: "---Select---", label: "Customer *"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0', required: true }) %>                                
-											</div>
-											<div class="col-md-4", id="building">
-                                             <%= f.select(:buildingId, options_from_collection_for_select(Building.all, :id, :id), {prompt: "---Select---", label: "Building *"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0', required: true}) %>
-											</div>
-											<div class="col-md-4", id="battery">
-                                            <%= f.select(:batteryId, options_from_collection_for_select(Battery.all, :id, :id), {prompt: "---Select---", label: "Battery"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
-											</div>
-											<div class="col-md-4", id="column">
-                                            <%= f.select(:columnId, options_from_collection_for_select(Column.all, :id, :id), {prompt: "---Select---", label: "Column"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %> 
+                                            <%= f.select(:customer_id, options_from_collection_for_select(Customer.all, :id, :company_name), {prompt: "---Select---", label: "Customer Name *"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0', required: true }) %>                                
 											</div>
 									</div>
+									<div class = "row">
+										<div class="col-sm-3", id="building">
+											<%= f.select(:building_id, options_from_collection_for_select(Building.all, :id, :id), {prompt: "---Select---", label: "Building ID *"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0', required: true}) %>
+										</div>
+										<div class="col-sm-3", id="battery">
+										<%= f.select(:battery_id, options_from_collection_for_select(Battery.all, :id, :id), {prompt: "---Select---", label: "Battery ID"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
+										</div>
+										<div class="col-sm-3", id="column">
+										<%= f.select(:column_id, options_from_collection_for_select(Column.all, :id, :id), {prompt: "---Select---", label: "Column ID"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %> 
+										</div>
+										<div class="col-sm-3", id= "elevator">
+										<%= f.select(:elevator_id, options_from_collection_for_select(Elevator.all, :id, :id), {prompt: "---Select---", label: "ElevatorID "}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
+										</div>
+									</div>
 									<div class="row">
-											<div class="col-md-8", id= "elevator">
-                                            <%= f.select(:elevatorId, options_from_collection_for_select(Elevator.all, :id, :id), {prompt: "---Select---", label: "Elevator"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
-											</div>
-											<div class="col-md-4">
-                                                <%= f.select(:employeeId, options_from_collection_for_select(Employee.all, :id, :last_name), {prompt: "---Select---", label: "Employee"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
-											</div>
+										<div class="col-md-4">
+											<%= f.select(:employee_id, options_from_collection_for_select(Employee.all, :id, :last_name, ), {prompt: "---Select---", label: "Employee"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
+										</div>
 									</div>
 									<div class="row">
 											<div class="col-md-12">
-                                            <%= f.text_area :reportrake, label: "Description *", control_class: "form-control", :maxlength => "10000", :rows => "8", required: true %> 
+                                            <%= f.text_area :report, label: "Description *", control_class: "form-control", :maxlength => "10000", :rows => "8", required: true %> 
 											</div>
 									</div>
 
@@ -105,7 +108,7 @@
 
         function ajaxCall(item, element){
 
-            var itemId = $("#" + item + "Id").val();
+            var itemId = $("#" + item + "_id").val();
 
 
             if (itemId != "" && itemId != "---Select---" ){
@@ -123,11 +126,11 @@
                     success: function (response) {
                         console.log(response);
                         var elements = response["elements"];
-                        $("select#" + element +"Id option").remove();
+                        $("select#" + element +"_id option").remove();
 
-                        $("#" + element +"Id").append('<option value = "">---Select---</option>');
+                        $("#" + element +"_id").append('<option value = "">---Select---</option>');
                         for(var i = 0; i < elements.length; i++){
-                            $("#" + element +"Id").append('<option value="' + elements[i]["id"] + '">' + elements[i]["id"] + '</option>');
+                            $("#" + element +"_id").append('<option value="' + elements[i]["id"] + '">' + elements[i]["id"] + '</option>');
                         }
                     }
 
@@ -136,17 +139,17 @@
             }
         }
 
-        $("#customerId").change(function(){
+        $("#customer_id").change(function(){
             ajaxCall("customer", "building")
             });
 
-        $("#buildingId").change(function(){
+        $("#building_id").change(function(){
             ajaxCall("building", "battery")
             });
-        $("#batteryId").change(function(){
+        $("#battery_id").change(function(){
             ajaxCall("battery", "column")
             });
-        $("#columnId").change(function(){
+        $("#column_id").change(function(){
             ajaxCall("column", "elevator")
             });
 

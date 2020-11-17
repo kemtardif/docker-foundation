@@ -3,6 +3,7 @@ class Elevator < ApplicationRecord
     belongs_to :column
 
     after_update :call_tech
+    has_many :intervention
     
 
     private

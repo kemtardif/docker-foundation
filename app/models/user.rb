@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :employee
   has_one :customer
+  has_many :interventions
 
   #Test Jorge Assigning default role
   after_create :assign_default_role

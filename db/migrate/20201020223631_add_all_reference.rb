@@ -13,5 +13,7 @@ class AddAllReference < ActiveRecord::Migration[5.2]
 
     add_reference :buildings_details, :building, foreign_key: true
     add_reference :batteries, :employee, foreign_key: true
+
+    
   end
 end

@@ -7,41 +7,33 @@ class InterventionsController < ApplicationController
     def create     
         @intervention = Intervention.new(params
         .permit(:name, 
-                :customerId, 
-                :buildingId, 
-                :batteryId, 
-                :columnId, :elevatorId, 
-                :employeeId, 
-                :reportrake))
+                :customer_id, 
+                :building_id, 
+                :battery_id, 
+                :column_id, :elevator_id, 
+                :employee_id, 
+                :report))
 
         @intervention.author = current_user.id
         @intervention.save
 
         if @intervention.save
         redirect_to root_path, notice: "Your Intervention Request was succesfully sent!"
+        helpers.ticket_intervention(params
+                                .permit(:name, 
+                                        :customer_id, 
+                                        :building_id, 
+                                        :battery_id, 
+                                        :column_id, 
+                                        :elevator_id, 
+                                        :employee_id, 
+                                        :report))
         else
         redirect_to new_intervention_path, alert: "There was an error sending your Intervention Request!"
         end   
 
     end
-
-
-    def building
-        if params[:itemId].present?
-            @elements = Customer.find(params[:itemId]).buildings
-        else
-            @elements = Building.all
-        end
-
-        if request.xhr?
-            respond_to do |format|
-                format.json {
-                    render json: {elements: @elements}
-                }
-            end
-        end
-    end
-
+    
     def search
             if params["type"] == "building"
                 @elements = Customer.find(params[:itemId]).buildings

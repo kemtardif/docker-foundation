@@ -4,7 +4,7 @@ module TicketHelper
 	def client_con
 		client = ZendeskAPI::Client.new do |config|
 			
-			config.url = "https://tonted.zendesk.com/api/v2"
+			config.url = "https://superkem.zendesk.com/api/v2"
 			config.username = ENV["ZENDESK_USERNAME"]
 			config.token = ENV["ZENDESK_TOKEN"]
 			config.retry = true
@@ -36,6 +36,17 @@ module TicketHelper
 		subject = "Quote for #{params['company_name']}"
 		comment = "The company #{params['company_name']} has made an estimate for #{params['elevator_needed']} elevator(s) of the #{params['game']} model in a #{params['building_type']} building with #{params['floors_qty']} floors for a total amount of #{number_to_currency(params['total_price'])}.
 		The contact email is #{params['email']}."
+
+		ticket_save(client, subject, comment)
+	end
+
+	def ticket_intervention(params)
+		client = client_con()
+
+		subject = "Problem"
+		comment = "The Employer with ID '#{current_user.id}' sent an intervention request for the company '#{Customer.find(params[:customer_id]).company_name}'.
+		They have problems in building '#{params[:building_id]}'. Description of request: '#{params[:report]}'.
+		Addition information => Battery ID: '#{params[:battery_id]}', Column ID: '#{params[:column_id]}', Elevator ID: '#{params[:elevator_id]}', Assigned Employee: '#{params[:employee_id]}'."
 
 		ticket_save(client, subject, comment)
 	end
