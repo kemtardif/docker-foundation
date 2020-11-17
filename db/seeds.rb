@@ -13,9 +13,10 @@ def create_intervention
   int_ = Intervention.new 
   int_.startDateIntervention = startDate
   int_.report = Faker::ChuckNorris.fact
-  int_.endDateIntervention = Faker::Date.between(from: startDate, to: '2020-10-30')
 
-
+  if random == 1
+    int_.endDateIntervention = Faker::Date.between(from: startDate, to: '2020-10-30')
+  end
 
   return int_
 end
@@ -329,14 +330,21 @@ def faker_data
   models = ["standard", "premium", "excelium"]
   type_addresses = ["Billing", "Shipping", "Business", "Home"]
   department = ["Residential", "Commercial", "Corporate", "Hybrid"]
+  
+    employee()
 
     1.upto(10) do |cu|
         puts "Customer #{cu} creates\t"
         customer_ = customer_create()
+        random = rand(1..5)
+        random2 = rand(1..5)
 
-        #inter_ = create_intervention()
+        inter_ = create_intervention()
+        customer_.interventions << inter_
+        inter_.author = Employee.find(random)
+        inter_.employee = Employee.find(random2)
 
-        #customer_.interventions << inter_
+
 
         lead_ = lead_create(department)
         customer_.lead = lead_
@@ -345,7 +353,11 @@ def faker_data
             building_ = building_create(bu)
             customer_.buildings << building_
 
-           # building_.interventions << inter_
+
+            building_.interventions << inter_
+            customer_.interventions << inter_
+
+           
 
             1.upto(rand(1..3)) do |ba|
               buildings_detail_ = building_details_create()
@@ -356,20 +368,26 @@ def faker_data
               battery_ = battery_create(customer_.date_create, type_building, ba, status_)
               building_.batteries << battery_
 
-             # battery_.interventions << inter_
+              battery_.interventions << inter_
+
+             
 
               
               1.upto(rand(1..3)) do |co|
                   column_ = column_create(status_, battery_.type_building, co)
                   battery_.columns << column_  
 
-                # column_.interventions << inter_
+                  column_.interventions << inter_
+
+                
 
                   1.upto(rand(1..3)) do |el|
                       elevator_ = elevator_create(models, status_, battery_.type_building, battery_.date_commissioning, el)
                       column_.elevators << elevator_
 
-                     # elevator_.interventions << inter_
+
+                      elevator_.interventions << inter_
+                      inter_.save!
                   end  
                   # column_.save!
                   puts "    |     |     |\n"     
@@ -390,5 +408,4 @@ def faker_data
     end 
 end
 
-employee()
 faker_data()

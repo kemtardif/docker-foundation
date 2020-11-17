@@ -12,8 +12,8 @@ class Ability
     elsif user.has_role? :employee
      can :access, :rails_admin 
      can :read, :dashboard
-     ##can [:read, :create], [Building, Elevator, Column, Intervention]
-     can :manage, :all
+     can [:read, :create], [Building, Elevator, Column, Intervention]
+
     else
       can :access, :rails_admin #To be able to see the login form
   
