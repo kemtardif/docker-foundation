@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
     helper :all
 
-    protect_from_forgery prepend: true, with: :exception
+    protect_from_forgery prepend: true
     #skip_before_action :verify_authenticity_token
 
    protected
