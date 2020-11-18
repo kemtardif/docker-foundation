@@ -21,11 +21,13 @@ class WatsonController < ActionController::Base
         text_to_speech.service_url = ENV["TEXT_TO_SPEECH_URL"]
             
         message = "Greeting user #{current_user.id}. There is #{Elevator::count} elevators in #{Building::count} buildings of your 
-                    #{Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
+                    {Customer::count} customers. Currently, #{Elevator.where(status: 'Intervention').count} elevators are not in 
                     Running Status and are being serviced. You currently have #{Quote::count} quotes awaiting processing.
                     You currently have #{Lead::count} leads in your contact requests. 
-                    #{Battery::count} Batteries are deployed across 
-                    #{Address.where(id: Building.select(:address_id).distinct).select(:city).distinct.count} cities"
+                    {Battery::count} Batteries are deployed across 
+                    {Address.where(id: Building.select(:address_id).distinct).select(:city).distinct.count} cities"
+
+
 
         response = text_to_speech.synthesize(
             text: message,
