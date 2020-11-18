@@ -119,7 +119,7 @@ Incorporating the code below to the existing `create` function at `leads_control
     project_name = params[:project_name]
       
     mail = Mail.new
-    mail.from = Email.new(email: 'cindy-okino@hotmail.com')
+    mail.from = Email.new(email: 'tardif.kremlin@gmail.com')
     personalization = Personalization.new
     personalization.add_to(Email.new(email: email))
     personalization.add_dynamic_template_data({
@@ -127,7 +127,7 @@ Incorporating the code below to the existing `create` function at `leads_control
       "projectName" => project_name
     })
     mail.add_personalization(personalization)
-    mail.template_id = 'd-c6ab731e2c5249cf8f7405d6cf96fbfe'
+    mail.template_id = ' d-25e02690608041c3b521a2dc34f072da'
     
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     begin

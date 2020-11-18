@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
   # Logic to connect to the dropbox account, create a diretory for the client, export the binary files to dropbox client's directory, delete the binary file from MySQL database 
     def migrate_attachments_to_dropbox
       puts self.id
-      dropbox_client = DropboxApi::Client.new
+      dropbox_client = DropboxApi::Client.new(ENV["DROPBOX_OAUTH_BEARER"])
       
       puts self.cpy_contact_email    
       Lead.where(email: self.cpy_contact_email).each do |lead|  # for each lead that has this email       
