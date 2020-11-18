@@ -1,18 +1,18 @@
 require 'date'
 
-kem = ["postgres","kemtardif"]
+#kem = ["postgres","kemtardif"]
 
 
 
-#host_ = "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com"
-#dbname_ = "cindy_okino_warehouse"
-#user_ = "codeboxx"
-#password_ = "Codeboxx1!"
+host_ = "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com"
+dbname_ = "kemtardifPSQL"
+user_ = "codeboxx"
+password_ = "Codeboxx1!"
 
- host_ = "localhost"
- dbname_ = "Warehouse_Foundation"
- user_ = kem[0]
- password_ = kem[1]
+# host_ = "localhost"
+# dbname_ = "Warehouse_Foundation"
+ #user_ = kem[0]
+ #password_ = kem[1]
 
 
 # make sure to connect the good user
@@ -176,6 +176,6 @@ namespace :dwh do
         Rake::Task["dwh:fact_elevator"].invoke 
         Rake::Task["dwh:fact_quote"].invoke 
         Rake::Task["dwh:dimcustomers"].invoke 
-        Rake::Task["fact_intervention"].invoke 
+        Rake::Task["dwh:fact_intervention"].invoke 
     end
 end
