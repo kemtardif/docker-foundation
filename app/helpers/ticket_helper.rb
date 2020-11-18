@@ -43,12 +43,13 @@ module TicketHelper
 	def ticket_intervention(params)
 		client = client_con()
 
-		subject = "Problem"
+		subject = "Intervention required"
 		comment = "The Employer with ID '#{current_user.id}' sent an intervention request for the company '#{Customer.find(params[:customer_id]).company_name}'.
 		They have problems in building '#{params[:building_id]}'. Description of request: '#{params[:report]}'.
 		Addition information => Battery ID: '#{params[:battery_id]}', Column ID: '#{params[:column_id]}', Elevator ID: '#{params[:elevator_id]}', Assigned Employee: '#{params[:employee_id]}'."
 
-		ticket_save(client, subject, comment)
+		ticket = ZendeskAPI::Ticket.new(client, :subject => subject, :comment => { :body => comment }, :type => "problem")
+		ticket.save!
 	end
 
 end
