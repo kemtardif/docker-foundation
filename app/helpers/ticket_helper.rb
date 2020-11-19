@@ -43,10 +43,32 @@ module TicketHelper
 	def ticket_intervention(params)
 		client = client_con()
 
-		subject = "Intervention required"
-		comment = "The Employer with ID '#{current_user.id}' sent an intervention request for the company '#{Customer.find(params[:customer_id]).company_name}'.
-		They have problems in building '#{params[:building_id]}'. Description of request: '#{params[:report]}'.
-		Addition information => Battery ID: '#{params[:battery_id]}', Column ID: '#{params[:column_id]}', Elevator ID: '#{params[:elevator_id]}', Assigned Employee: '#{params[:employee_id]}'."
+		subject = "Intervention required by #{current_user.employee.fullName}"
+		comment = "The Employee with ID #{current_user.id} sent an intervention request for the company '#{Customer.find(params[:customer_id]).company_name}'.
+		They is an issue with building #{params[:building_id]}. Description of the request for intervention: #{params[:report]}."
+
+		if params[:battery_id] != ""
+			battery = "They mentionned the battery with ID #{params[:battery_id]}.
+			"
+			comment << battery
+		end
+		if params[:column_id] != ""
+			column = "The column with ID #{params[:column_id]} was specified.
+			"
+			comment << column
+		end
+		if params[:elevator_id] != ""
+			elevator = "The elevator with ID #{params[:elevator_id]} was selected.
+			"
+			comment << elevator
+		end
+		if params[:employee_id] != ""
+			employee = "The employee with ID #{params[:employee_id]} must be contacted.
+			"
+			comment << employee
+		end
+
+		comment << "Please follow-up with the person in charge. Thank you."
 
 		ticket = ZendeskAPI::Ticket.new(client, :subject => subject, :comment => { :body => comment }, :type => "problem")
 		ticket.save!

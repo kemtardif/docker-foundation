@@ -65,7 +65,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-4">
-											<%= f.select(:employee_id, options_from_collection_for_select(Employee.all, :id, :last_name, ), {prompt: "---Select---", label: "Employee"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
+											<%= f.select(:employee_id, options_from_collection_for_select(Employee.all, :id, :fullName ), {prompt: "---Select---", label: "Employee"}, {class: 'custom-select mb-0 mr-sm-0 mb-sm-0'}) %>
 										</div>
 									</div>
 									<div class="row">

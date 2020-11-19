@@ -4,4 +4,8 @@ class Employee < ApplicationRecord
   
   has_many :interventions
 
+  def fullName
+    self.first_name + " " + self.last_name
+  end
+
 end

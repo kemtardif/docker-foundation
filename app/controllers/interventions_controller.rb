@@ -26,18 +26,18 @@ class InterventionsController < ApplicationController
         @intervention.save
 
         if @intervention.save
-        redirect_to root_path, notice: "Your Intervention Request was succesfully sent!"
-        helpers.ticket_intervention(params
-                                .permit(:name, 
-                                        :customer_id, 
-                                        :building_id, 
-                                        :battery_id, 
-                                        :column_id, 
-                                        :elevator_id, 
-                                        :employee_id, 
-                                        :report))
-        else
-        redirect_to new_intervention_path, alert: "There was an error sending your Intervention Request!"
+            redirect_to root_path, notice: "Your Intervention Request was succesfully sent!"
+            helpers.ticket_intervention(params
+                                    .permit(:name, 
+                                            :customer_id, 
+                                            :building_id, 
+                                            :battery_id, 
+                                            :column_id, 
+                                            :elevator_id, 
+                                            :employee_id, 
+                                            :report))
+            else
+            redirect_to new_intervention_path, alert: "There was an error sending your Intervention Request!"
         end   
 
     end
