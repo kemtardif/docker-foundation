@@ -18,7 +18,7 @@ class LeadsController < ApplicationController
     if verify_recaptcha(model: @lead) && @lead.save
       respond_to do |format|
           helpers.ticket_lead(lead_params)
-          SendGrid_compute()
+          self.sendGrid_compute
           format.html { redirect_to '/home', notice: 'Message Sent!' }
       end
     else
@@ -26,21 +26,22 @@ class LeadsController < ApplicationController
     end
   end
 
-  def SendGrid_compute
+  def sendGrid_compute
+
     full_name = params[:full_name]
     email = params[:email]
     project_name = params[:project_name]
       
     mail = Mail.new
-    mail.from = Email.new(email: 'cindy-okino@hotmail.com')
+    mail.from = Email.new(email: 'tardif.kremlin@gmail.com')
     personalization = Personalization.new
     personalization.add_to(Email.new(email: email))
     personalization.add_dynamic_template_data({
       "fullName" => full_name,
-      "projectName" => project_name
+     "projectName" => project_name
     })
     mail.add_personalization(personalization)
-    mail.template_id = 'd-c6ab731e2c5249cf8f7405d6cf96fbfe'
+    mail.template_id = 'd-25e02690608041c3b521a2dc34f072da'
     
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
     begin
@@ -48,6 +49,7 @@ class LeadsController < ApplicationController
     rescue Exception => e
         puts e.message
     end 
+
   end
 
   
