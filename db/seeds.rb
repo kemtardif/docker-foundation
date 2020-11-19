@@ -19,8 +19,7 @@ def create_intervention
     int_.status = "InProgress"
     if random1 == 1
       int_.endDateIntervention = Faker::Date.between(from: startDate, to: '2020-10-30')
-      int_.status = "Repaired"
-      int_.result = "Complete"
+      int_.status = "Completed"
     end
   end
 
