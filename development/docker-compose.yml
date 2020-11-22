@@ -1,0 +1,56 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USERNAME: root
+      MYSQL_DATABASE: kemtardifMSQL
+      MYSQL_PASSWORD: password
+    volumes:
+      - db:/var/run/mysqld
+    ports:
+      - "3306:3306"
+  warehouse:
+    image: postgres
+    restart: always
+    environment: 
+      POSTGRES_DATABASE: kemtardifPSQL
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  web:
+    build: ../
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+     RAILS_ENV: development
+     DB_USER: root
+     DB_NAME: kemtardifMSQL
+     DB_PASSWORD: password
+     DB_HOST: db
+     WAREHOUSE_NAME: kemtardifPSQL
+     WAREHOUSE_USER: postgres
+     WAREHOUSE_PASSWORD: password
+     WAREHOUSE_HOST: warehouse
+     BUNDLE_PATH: /bundle
+    volumes:
+      - ../:/app
+      - bundle:/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - warehouse
+    links:
+      - db
+      - warehouse
+volumes:
+  db:
+  db_data:
+  warehouse:
+  bundle:
