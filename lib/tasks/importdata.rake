@@ -4,10 +4,11 @@ require 'date'
 
 
 
-host_ = "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com"
-dbname_ = "kemtardifPSQL"
-user_ = "codeboxx"
-password_ = "Codeboxx1!"
+host_ = ENV['WAREHOUSE_HOST']
+dbname_ = ENV['WAREHOUSE_NAME']
+user_ = ENV['WAREHOUSE_USER']
+password_ = ENV['WAREHOUSE_PASSWORD']
+
 
 # host_ = "localhost"
 # dbname_ = "Warehouse_Foundation"

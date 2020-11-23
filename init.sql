@@ -1,0 +1,3 @@
+CREATE USER postgres WITH PASSWORD 'password';
+CREATE DATABASE kemtardifPSQL;
+GRANT ALL PRIVILEGES ON DATABASE kemtardifPSQL TO postgres;

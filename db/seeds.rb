@@ -3,6 +3,12 @@ require 'faker'
 
 ###Intervention generator
 
+user_ = User.new
+user_.email = "kem@tardif.com"
+user_.password = "password"
+user_.add_role :admin
+user_.save!
+
 
 
 def create_intervention

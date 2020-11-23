@@ -19,6 +19,8 @@ module Rocket_Elevators_Information_System
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
     config.middleware.use Rack::MethodOverride
+
+
     
   end
 end

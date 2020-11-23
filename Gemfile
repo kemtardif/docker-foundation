@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.5.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem "bootstrap_form", "~> 4.0"
 gem 'toastr-rails'
 
+gem 'dotenv-rails'
 
 #######
 
@@ -111,7 +112,7 @@ gem 'groupdate', '~> 5.2', '>= 5.2.1'
 gem 'sendgrid-ruby'
 gem 'zendesk_api'
 gem 'twilio-ruby'
-gem 'ibm_watson', git: 'https://github.com/watson-developer-cloud/ruby-sdk', branch: 'master'
+gem 'ibm_watson'
 gem 'slack-notifier'
 gem 'dropbox_api'
 gem 'gmaps4rails'
@@ -123,6 +124,7 @@ gem 'open-weather'
 
 #Secure API Keys
 gem 'figaro'
+
 
 #Get coordinates of adress
 gem 'geocoder'
